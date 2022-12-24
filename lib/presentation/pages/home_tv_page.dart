@@ -1,32 +1,31 @@
 import 'package:ditonton/common/constants.dart';
 import 'package:ditonton/common/state_enum.dart';
-import 'package:ditonton/presentation/pages/movie_detail_page.dart';
 import 'package:ditonton/presentation/pages/popular_movies_page.dart';
 import 'package:ditonton/presentation/pages/top_rated_movies_page.dart';
 import 'package:ditonton/presentation/provider/movie_list_notifier.dart';
+import 'package:ditonton/presentation/provider/tv_list_provider.dart';
 import 'package:ditonton/presentation/widgets/poster_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class HomeMoviePage extends StatefulWidget {
-  const HomeMoviePage({Key? key}) : super(key: key);
+class HomeTvPage extends StatefulWidget {
+  const HomeTvPage({Key? key}) : super(key: key);
 
   @override
-  State<HomeMoviePage> createState() => _HomeMoviePageState();
+  State<HomeTvPage> createState() => _HomeTvPageState();
 }
 
-class _HomeMoviePageState extends State<HomeMoviePage> {
+class _HomeTvPageState extends State<HomeTvPage> {
 
   @override
   void initState() {
     super.initState();
     Future.microtask(
-            () => Provider.of<MovieListNotifier>(context, listen: false)
-          ..fetchNowPlayingMovies()
-          ..fetchPopularMovies()
-          ..fetchTopRatedMovies());
+            () => Provider.of<TvListNotifier>(context, listen: false)
+          ..fetchNowPlayingTvs()
+          ..fetchPopularTvs()
+          ..fetchTopRatedTvs());
   }
-
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -34,71 +33,71 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Now Playing Movie',
+            'Now Playing TV Series',
             style: kHeading6,
           ),
-          Consumer<MovieListNotifier>(builder: (context, data, child) {
+          Consumer<TvListNotifier>(builder: (context, data, child) {
             final state = data.nowPlayingState;
             if (state == RequestState.Loading) {
               return Center(
                 child: CircularProgressIndicator(),
               );
             } else if (state == RequestState.Loaded) {
-              List<PosterCardData> posterCards = data.nowPlayingMovies.map((e) => PosterCardData(e.posterPath ?? "")).toList();
+              List<PosterCardData> posterCards = data.nowPlayingTvs.map((e) => PosterCardData(e.posterPath)).toList();
               return PosterCardList(items: posterCards, onTap: (index) {
-                Navigator.pushNamed(
-                  context,
-                  MovieDetailPage.ROUTE_NAME,
-                  arguments: data.nowPlayingMovies[index].id,
-                );
+                // Navigator.pushNamed(
+                //   context,
+                //   MovieDetailPage.ROUTE_NAME,
+                //   arguments: data.nowPlayingMovies[index].id,
+                // );
               });
             } else {
               return Text('Failed');
             }
           }),
           _buildSubHeading(
-            title: 'Popular Movie',
+            title: 'Popular TV Series',
             onTap: () =>
                 Navigator.pushNamed(context, PopularMoviesPage.ROUTE_NAME),
           ),
-          Consumer<MovieListNotifier>(builder: (context, data, child) {
-            final state = data.popularMoviesState;
+          Consumer<TvListNotifier>(builder: (context, data, child) {
+            final state = data.popularTvState;
             if (state == RequestState.Loading) {
               return Center(
                 child: CircularProgressIndicator(),
               );
             } else if (state == RequestState.Loaded) {
-              List<PosterCardData> posterCards = data.popularMovies.map((e) => PosterCardData(e.posterPath ?? "")).toList();
+              List<PosterCardData> posterCards = data.popularTvs.map((e) => PosterCardData(e.posterPath ?? "")).toList();
               return PosterCardList(items: posterCards, onTap: (index) {
-                Navigator.pushNamed(
-                  context,
-                  MovieDetailPage.ROUTE_NAME,
-                  arguments: data.popularMovies[index].id,
-                );
+                // Navigator.pushNamed(
+                //   context,
+                //   MovieDetailPage.ROUTE_NAME,
+                //   arguments: data.nowPlayingMovies[index].id,
+                // );
               });
             } else {
               return Text('Failed');
             }
           }),
           _buildSubHeading(
-            title: 'Top Rated Movie',
+            title: 'Top Rated TV Series',
             onTap: () =>
                 Navigator.pushNamed(context, TopRatedMoviesPage.ROUTE_NAME),
           ),
-          Consumer<MovieListNotifier>(builder: (context, data, child) {
-            final state = data.topRatedMoviesState;
+          Consumer<TvListNotifier>(builder: (context, data, child) {
+            final state = data.topRatedTvsState;
             if (state == RequestState.Loading) {
               return Center(
                 child: CircularProgressIndicator(),
               );
             } else if (state == RequestState.Loaded) {
-              List<PosterCardData> posterCards = data.topRatedMovies.map((e) => PosterCardData(e.posterPath ?? "")).toList();
+              List<PosterCardData> posterCards = data.topRatedTvs.map((e) => PosterCardData(e.posterPath ?? "")).toList();
               return PosterCardList(items: posterCards, onTap: (index) {
-                Navigator.pushNamed(
-                  context,
-                  MovieDetailPage.ROUTE_NAME,
-                  arguments: data.topRatedMovies[index].id,
-                );
+                // Navigator.pushNamed(
+                //   context,
+                //   MovieDetailPage.ROUTE_NAME,
+                //   arguments: data.nowPlayingMovies[index].id,
+                // );
               });
             } else {
               return Text('Failed');
