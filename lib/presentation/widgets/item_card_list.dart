@@ -4,10 +4,22 @@ import 'package:ditonton/domain/entities/movie.dart';
 import 'package:ditonton/presentation/pages/movie_detail_page.dart';
 import 'package:flutter/material.dart';
 
-class MovieCard extends StatelessWidget {
-  final Movie movie;
+class ItemData {
+  final String? title;
+  final String? overview;
+  final String? posterPath;
 
-  MovieCard(this.movie);
+  ItemData({
+    required this.title,
+    required this.overview,
+    required this.posterPath
+  });
+}
+
+class ItemCard extends StatelessWidget {
+  final ItemData item;
+
+  ItemCard(this.item);
 
   @override
   Widget build(BuildContext context) {
@@ -15,11 +27,11 @@ class MovieCard extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 4),
       child: InkWell(
         onTap: () {
-          Navigator.pushNamed(
-            context,
-            MovieDetailPage.ROUTE_NAME,
-            arguments: movie.id,
-          );
+          // Navigator.pushNamed(
+          //   context,
+          //   MovieDetailPage.ROUTE_NAME,
+          //   arguments: movie.id,
+          // );
         },
         child: Stack(
           alignment: Alignment.bottomLeft,
@@ -31,18 +43,19 @@ class MovieCard extends StatelessWidget {
                   bottom: 8,
                   right: 8,
                 ),
+                width: double.infinity,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      movie.title ?? '-',
+                      item.title ?? '-',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: kHeading6,
                     ),
                     SizedBox(height: 16),
                     Text(
-                      movie.overview ?? '-',
+                      item.overview ?? '-',
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -57,7 +70,7 @@ class MovieCard extends StatelessWidget {
               ),
               child: ClipRRect(
                 child: CachedNetworkImage(
-                  imageUrl: '$BASE_IMAGE_URL${movie.posterPath}',
+                  imageUrl: '$BASE_IMAGE_URL${item.posterPath}',
                   width: 80,
                   placeholder: (context, url) => Center(
                     child: CircularProgressIndicator(),

@@ -2,8 +2,11 @@ import 'package:ditonton/common/constants.dart';
 import 'package:ditonton/common/state_enum.dart';
 import 'package:ditonton/presentation/pages/popular_movies_page.dart';
 import 'package:ditonton/presentation/pages/top_rated_movies_page.dart';
+import 'package:ditonton/presentation/pages/tv/now_playing_tvs_page.dart';
+import 'package:ditonton/presentation/pages/tv/popular_tvs_page.dart';
+import 'package:ditonton/presentation/pages/tv/top_rated_tvs_page.dart';
 import 'package:ditonton/presentation/provider/movie_list_notifier.dart';
-import 'package:ditonton/presentation/provider/tv_list_provider.dart';
+import 'package:ditonton/presentation/provider/tv/tv_list_provider.dart';
 import 'package:ditonton/presentation/widgets/poster_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -32,9 +35,10 @@ class _HomeTvPageState extends State<HomeTvPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Now Playing TV Series',
-            style: kHeading6,
+          _buildSubHeading(
+              title: "Now Playing TV Series",
+              onTap: () =>
+                Navigator.pushNamed(context, NowPlayingTvsPage.ROUTE_NAME),
           ),
           Consumer<TvListNotifier>(builder: (context, data, child) {
             final state = data.nowPlayingState;
@@ -58,7 +62,7 @@ class _HomeTvPageState extends State<HomeTvPage> {
           _buildSubHeading(
             title: 'Popular TV Series',
             onTap: () =>
-                Navigator.pushNamed(context, PopularMoviesPage.ROUTE_NAME),
+                Navigator.pushNamed(context, PopularTvsPage.ROUTE_NAME),
           ),
           Consumer<TvListNotifier>(builder: (context, data, child) {
             final state = data.popularTvState;
@@ -69,11 +73,11 @@ class _HomeTvPageState extends State<HomeTvPage> {
             } else if (state == RequestState.Loaded) {
               List<PosterCardData> posterCards = data.popularTvs.map((e) => PosterCardData(e.posterPath ?? "")).toList();
               return PosterCardList(items: posterCards, onTap: (index) {
-                // Navigator.pushNamed(
-                //   context,
-                //   MovieDetailPage.ROUTE_NAME,
-                //   arguments: data.nowPlayingMovies[index].id,
-                // );
+                Navigator.pushNamed(
+                  context,
+                  PopularTvsPage.ROUTE_NAME,
+                  arguments: data.popularTvs[index].id,
+                );
               });
             } else {
               return Text('Failed');
@@ -82,7 +86,7 @@ class _HomeTvPageState extends State<HomeTvPage> {
           _buildSubHeading(
             title: 'Top Rated TV Series',
             onTap: () =>
-                Navigator.pushNamed(context, TopRatedMoviesPage.ROUTE_NAME),
+                Navigator.pushNamed(context, TopRatedTvsPage.ROUTE_NAME),
           ),
           Consumer<TvListNotifier>(builder: (context, data, child) {
             final state = data.topRatedTvsState;

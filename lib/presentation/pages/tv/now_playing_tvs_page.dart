@@ -1,34 +1,35 @@
 import 'package:ditonton/common/state_enum.dart';
-import 'package:ditonton/presentation/provider/popular_movies_notifier.dart';
+import 'package:ditonton/presentation/provider/tv/now_playing_tvs_notifier.dart';
+import 'package:ditonton/presentation/provider/tv/top_rated_tvs_notifier.dart';
 import 'package:ditonton/presentation/widgets/item_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class PopularMoviesPage extends StatefulWidget {
-  static const ROUTE_NAME = '/popular-movie';
+class NowPlayingTvsPage extends StatefulWidget {
+  static const ROUTE_NAME = '/now-playing-tv';
 
   @override
-  _PopularMoviesPageState createState() => _PopularMoviesPageState();
+  _NowPlayingTvsPageState createState() => _NowPlayingTvsPageState();
 }
 
-class _PopularMoviesPageState extends State<PopularMoviesPage> {
+class _NowPlayingTvsPageState extends State<NowPlayingTvsPage> {
   @override
   void initState() {
     super.initState();
     Future.microtask(() =>
-        Provider.of<PopularMoviesNotifier>(context, listen: false)
-            .fetchPopularMovies());
+        Provider.of<NowPlayingTvsNotifier>(context, listen: false)
+            .fetchNowPlayingTvs());
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Popular Movies'),
+        title: Text('Now Playings TV'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Consumer<PopularMoviesNotifier>(
+        child: Consumer<NowPlayingTvsNotifier>(
           builder: (context, data, child) {
             if (data.state == RequestState.Loading) {
               return Center(
@@ -37,10 +38,10 @@ class _PopularMoviesPageState extends State<PopularMoviesPage> {
             } else if (data.state == RequestState.Loaded) {
               return ListView.builder(
                 itemBuilder: (context, index) {
-                  final movie = data.movies[index];
-                  return ItemCard(ItemData(title: movie.title, overview: movie.overview, posterPath: movie.posterPath));
+                  final tv = data.tvs[index];
+                  return ItemCard(ItemData(title: tv.originalName, overview: tv.overview, posterPath: tv.posterPath));
                 },
-                itemCount: data.movies.length,
+                itemCount: data.tvs.length,
               );
             } else {
               return Center(
