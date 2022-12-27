@@ -1,6 +1,5 @@
 import 'package:ditonton/common/state_enum.dart';
 import 'package:ditonton/presentation/provider/tv/now_playing_tvs_notifier.dart';
-import 'package:ditonton/presentation/provider/tv/top_rated_tvs_notifier.dart';
 import 'package:ditonton/presentation/widgets/item_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

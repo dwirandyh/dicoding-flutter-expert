@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:ditonton/data/models/tv_model.dart';
+import 'package:ditonton/data/models/tv/tv_model.dart';
 
 class TvResponse {
     TvResponse({

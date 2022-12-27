@@ -1,11 +1,9 @@
 import 'package:ditonton/common/constants.dart';
 import 'package:ditonton/common/state_enum.dart';
-import 'package:ditonton/presentation/pages/popular_movies_page.dart';
-import 'package:ditonton/presentation/pages/top_rated_movies_page.dart';
 import 'package:ditonton/presentation/pages/tv/now_playing_tvs_page.dart';
 import 'package:ditonton/presentation/pages/tv/popular_tvs_page.dart';
 import 'package:ditonton/presentation/pages/tv/top_rated_tvs_page.dart';
-import 'package:ditonton/presentation/provider/movie_list_notifier.dart';
+import 'package:ditonton/presentation/pages/tv/tv_detail_page.dart';
 import 'package:ditonton/presentation/provider/tv/tv_list_provider.dart';
 import 'package:ditonton/presentation/widgets/poster_card_list.dart';
 import 'package:flutter/material.dart';
@@ -49,11 +47,11 @@ class _HomeTvPageState extends State<HomeTvPage> {
             } else if (state == RequestState.Loaded) {
               List<PosterCardData> posterCards = data.nowPlayingTvs.map((e) => PosterCardData(e.posterPath)).toList();
               return PosterCardList(items: posterCards, onTap: (index) {
-                // Navigator.pushNamed(
-                //   context,
-                //   MovieDetailPage.ROUTE_NAME,
-                //   arguments: data.nowPlayingMovies[index].id,
-                // );
+                Navigator.pushNamed(
+                  context,
+                  TvDetailPage.ROUTE_NAME,
+                  arguments: data.nowPlayingTvs[index].id,
+                );
               });
             } else {
               return Text('Failed');
@@ -75,7 +73,7 @@ class _HomeTvPageState extends State<HomeTvPage> {
               return PosterCardList(items: posterCards, onTap: (index) {
                 Navigator.pushNamed(
                   context,
-                  PopularTvsPage.ROUTE_NAME,
+                  TvDetailPage.ROUTE_NAME,
                   arguments: data.popularTvs[index].id,
                 );
               });
@@ -97,11 +95,11 @@ class _HomeTvPageState extends State<HomeTvPage> {
             } else if (state == RequestState.Loaded) {
               List<PosterCardData> posterCards = data.topRatedTvs.map((e) => PosterCardData(e.posterPath ?? "")).toList();
               return PosterCardList(items: posterCards, onTap: (index) {
-                // Navigator.pushNamed(
-                //   context,
-                //   MovieDetailPage.ROUTE_NAME,
-                //   arguments: data.nowPlayingMovies[index].id,
-                // );
+                Navigator.pushNamed(
+                  context,
+                  TvDetailPage.ROUTE_NAME,
+                  arguments: data.topRatedTvs[index].id,
+                );
               });
             } else {
               return Text('Failed');
