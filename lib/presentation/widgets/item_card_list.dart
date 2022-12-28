@@ -66,21 +66,38 @@ class ItemCard extends StatelessWidget {
                 left: 16,
                 bottom: 16,
               ),
-              child: ClipRRect(
-                child: CachedNetworkImage(
-                  imageUrl: '$BASE_IMAGE_URL${item.posterPath}',
-                  width: 80,
-                  placeholder: (context, url) => Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
-                ),
-                borderRadius: BorderRadius.all(Radius.circular(8)),
-              ),
+              child: _buildThumbnail(),
             ),
           ],
         ),
       ),
     );
+  }
+
+  Widget _buildThumbnail() {
+    if (item.posterPath != null) {
+      return ClipRRect(
+        child:
+        CachedNetworkImage(
+          imageUrl: '$BASE_IMAGE_URL${item.posterPath}',
+          width: 80,
+          placeholder: (context, url) => Center(
+            child: CircularProgressIndicator(),
+          ),
+          errorWidget: (context, url, error) => Icon(Icons.error),
+        ),
+        borderRadius: BorderRadius.all(Radius.circular(8)),
+      );
+    } else {
+      return ClipRRect(
+        child: Container(
+          color: Colors.grey,
+            height: 120,
+            width: 80,
+            child: Icon(Icons.error)
+        ),
+        borderRadius: BorderRadius.all(Radius.circular(8)),
+      );
+    }
   }
 }

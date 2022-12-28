@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:ditonton/domain/usecases/get_watchlist_movies.dart';
+import 'package:ditonton/domain/usecases/get_watchlist.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
@@ -8,20 +8,20 @@ import '../../helpers/test_helper.mocks.dart';
 
 void main() {
   late GetWatchlistMovies usecase;
-  late MockMovieRepository mockMovieRepository;
+  late MockWatchlistRepository mockWatchlistRepository;
 
   setUp(() {
-    mockMovieRepository = MockMovieRepository();
-    usecase = GetWatchlistMovies(mockMovieRepository);
+    mockWatchlistRepository = MockWatchlistRepository();
+    usecase = GetWatchlistMovies(mockWatchlistRepository);
   });
 
   test('should get list of movies from the repository', () async {
     // arrange
-    when(mockMovieRepository.getWatchlistMovies())
-        .thenAnswer((_) async => Right(testMovieList));
+    when(mockWatchlistRepository.getWatchlist())
+        .thenAnswer((_) async => Right(testWatchlistArray));
     // act
     final result = await usecase.execute();
     // assert
-    expect(result, Right(testMovieList));
+    expect(result, Right(testWatchlistArray));
   });
 }

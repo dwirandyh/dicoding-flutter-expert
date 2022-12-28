@@ -1,32 +1,37 @@
 import 'package:ditonton/domain/entities/movie.dart';
 import 'package:ditonton/domain/entities/movie_detail.dart';
+import 'package:ditonton/domain/entities/watchlist.dart';
 import 'package:equatable/equatable.dart';
 
-class MovieTable extends Equatable {
+class WatchListTable extends Equatable {
   final int id;
   final String? title;
   final String? posterPath;
   final String? overview;
+  final String type;
 
-  MovieTable({
+  WatchListTable({
     required this.id,
     required this.title,
     required this.posterPath,
     required this.overview,
+    required this.type
   });
 
-  factory MovieTable.fromEntity(MovieDetail movie) => MovieTable(
-        id: movie.id,
-        title: movie.title,
-        posterPath: movie.posterPath,
-        overview: movie.overview,
+  factory WatchListTable.fromEntity(Watchlist watchlist) => WatchListTable(
+        id: watchlist.id,
+        title: watchlist.title,
+        posterPath: watchlist.posterPath,
+        overview: watchlist.overview,
+        type: watchlist.type == WatchListType.tv ? "tv" : "movie"
       );
 
-  factory MovieTable.fromMap(Map<String, dynamic> map) => MovieTable(
+  factory WatchListTable.fromMap(Map<String, dynamic> map) => WatchListTable(
         id: map['id'],
         title: map['title'],
         posterPath: map['posterPath'],
         overview: map['overview'],
+        type: map['type']
       );
 
   Map<String, dynamic> toJson() => {
@@ -34,16 +39,18 @@ class MovieTable extends Equatable {
         'title': title,
         'posterPath': posterPath,
         'overview': overview,
+        'type': type
       };
 
-  Movie toEntity() => Movie.watchlist(
+  Watchlist toEntity() => Watchlist(
         id: id,
         overview: overview,
         posterPath: posterPath,
         title: title,
+        type: type == "tv" ? WatchListType.tv : WatchListType.movie
       );
 
   @override
   // TODO: implement props
-  List<Object?> get props => [id, title, posterPath, overview];
+  List<Object?> get props => [id, title, posterPath, overview, type];
 }

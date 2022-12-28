@@ -1,5 +1,6 @@
 import 'package:ditonton/domain/entities/movie.dart';
 import 'package:ditonton/domain/entities/movie_detail.dart';
+import 'package:ditonton/domain/entities/watchlist.dart';
 import 'package:ditonton/domain/usecases/movie/get_movie_detail.dart';
 import 'package:ditonton/domain/usecases/movie/get_movie_recommendations.dart';
 import 'package:ditonton/common/state_enum.dart';
@@ -80,7 +81,14 @@ class MovieDetailNotifier extends ChangeNotifier {
   String get watchlistMessage => _watchlistMessage;
 
   Future<void> addWatchlist(MovieDetail movie) async {
-    final result = await saveWatchlist.execute(movie);
+
+    final result = await saveWatchlist.execute(Watchlist(
+        id: movie.id,
+        title: movie.title,
+        posterPath: movie.posterPath,
+        overview: movie.overview,
+        type: WatchListType.movie
+    ));
 
     await result.fold(
       (failure) async {
@@ -95,7 +103,14 @@ class MovieDetailNotifier extends ChangeNotifier {
   }
 
   Future<void> removeFromWatchlist(MovieDetail movie) async {
-    final result = await removeWatchlist.execute(movie);
+
+    final result = await removeWatchlist.execute(Watchlist(
+        id: movie.id,
+        title: movie.title,
+        posterPath: movie.posterPath,
+        overview: movie.overview,
+        type: WatchListType.movie
+    ));
 
     await result.fold(
       (failure) async {

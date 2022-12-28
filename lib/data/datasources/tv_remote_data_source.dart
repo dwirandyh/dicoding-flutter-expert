@@ -67,8 +67,14 @@ class TvRemoteDataSourceImpl implements TvRemoteDataSource {
   }
 
   @override
-  Future<List<TvModel>> searchTv(String query) {
-    throw UnimplementedError();
+  Future<List<TvModel>> searchTv(String query) async {
+    final response = await client.get(Uri.parse('$BASE_URL/search/tv?$API_KEY&query=$query'));
+
+    if (response.statusCode == 200) {
+      return TvResponse.fromJson(json.decode(response.body)).tvList;
+    } else {
+      throw ServerException();
+    }
   }
 
   @override
