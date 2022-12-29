@@ -16,8 +16,9 @@ class ItemData {
 
 class ItemCard extends StatelessWidget {
   final ItemData item;
+  final Function? onTap;
 
-  ItemCard(this.item);
+  ItemCard({required this.item, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -25,11 +26,9 @@ class ItemCard extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 4),
       child: InkWell(
         onTap: () {
-          // Navigator.pushNamed(
-          //   context,
-          //   MovieDetailPage.ROUTE_NAME,
-          //   arguments: movie.id,
-          // );
+          if (onTap != null) {
+            onTap!();
+          }
         },
         child: Stack(
           alignment: Alignment.bottomLeft,

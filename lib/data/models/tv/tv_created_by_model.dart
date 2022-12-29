@@ -1,6 +1,8 @@
 import 'dart:convert';
 
-class TvCreatedByModel {
+import 'package:equatable/equatable.dart';
+
+class TvCreatedByModel extends Equatable {
   TvCreatedByModel({
     required this.id,
     required this.creditId,
@@ -34,4 +36,14 @@ class TvCreatedByModel {
     "gender": gender,
     "profile_path": profilePath,
   };
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [
+    id,
+    creditId,
+    name,
+    gender,
+    profilePath,
+  ];
 }

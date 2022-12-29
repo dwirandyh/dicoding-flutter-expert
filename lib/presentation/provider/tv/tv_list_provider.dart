@@ -39,7 +39,8 @@ class TvListNotifier extends ChangeNotifier {
   });
 
   Future<void> fetchNowPlayingTvs() async {
-    _nowPlayingState = RequestState.Loaded;
+    _nowPlayingState = RequestState.Loading;
+    notifyListeners();
 
     final result = await getNowPlayingTv.execute();
     result.fold(
@@ -57,7 +58,8 @@ class TvListNotifier extends ChangeNotifier {
   }
 
   Future<void> fetchPopularTvs() async {
-    _popularTvState = RequestState.Loaded;
+    _popularTvState = RequestState.Loading;
+    notifyListeners();
 
     final result = await getPopularTv.execute();
     result.fold(
@@ -75,7 +77,8 @@ class TvListNotifier extends ChangeNotifier {
   }
 
   Future<void> fetchTopRatedTvs() async {
-    _topRatedTvsState = RequestState.Loaded;
+    _topRatedTvsState = RequestState.Loading;
+    notifyListeners();
 
     final result = await getTopRatedTv.execute();
     result.fold(

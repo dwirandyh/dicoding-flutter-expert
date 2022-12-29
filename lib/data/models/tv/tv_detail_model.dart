@@ -7,8 +7,9 @@ import 'package:ditonton/data/models/tv/tv_production_country_model.dart';
 import 'package:ditonton/data/models/tv/tv_spoken_language_model.dart';
 import 'package:ditonton/domain/entities/tv_detail.dart';
 import 'package:ditonton/domain/entities/tv_season.dart';
+import 'package:equatable/equatable.dart';
 
-class TvDetailModel {
+class TvDetailModel extends Equatable {
   TvDetailModel({
     required this.adult,
     required this.backdropPath,
@@ -181,6 +182,37 @@ class TvDetailModel {
         voteCount: voteCount
     );
   }
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [
+    adult,
+    backdropPath,
+    episodeRunTime,
+    firstAirDate,
+    genres,
+    homepage,
+    id,
+    inProduction,
+    languages,
+    lastAirDate,
+    name,
+    nextEpisodeToAir,
+    numberOfEpisodes,
+    numberOfSeasons,
+    originCountry,
+    originalLanguage,
+    originalName,
+    overview,
+    popularity,
+    posterPath,
+    seasons,
+    status,
+    tagline,
+    type,
+    voteAverage,
+    voteCount
+  ];
 }
 
 class LastEpisodeToAir {
@@ -250,7 +282,7 @@ class LastEpisodeToAir {
 
 
 
-class TvSeasonModel {
+class TvSeasonModel extends Equatable {
   TvSeasonModel({
     required this.airDate,
     required this.episodeCount,
@@ -304,4 +336,16 @@ class TvSeasonModel {
         seasonNumber: seasonNumber
     );
   }
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [
+    airDate,
+    episodeCount,
+    id,
+    name,
+    overview,
+    posterPath,
+    seasonNumber,
+  ];
 }

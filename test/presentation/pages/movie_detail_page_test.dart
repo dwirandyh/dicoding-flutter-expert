@@ -105,4 +105,47 @@ void main() {
     expect(find.byType(AlertDialog), findsOneWidget);
     expect(find.text('Failed'), findsOneWidget);
   });
+
+  testWidgets('Should show loading indicator while fetching detail',
+          (WidgetTester tester) async {
+        when(mockNotifier.movieState).thenReturn(RequestState.Loaded);
+        when(mockNotifier.movie).thenReturn(testMovieDetail);
+        when(mockNotifier.recommendationState).thenReturn(RequestState.Loaded);
+        when(mockNotifier.movieRecommendations).thenReturn(<Movie>[]);
+        when(mockNotifier.isAddedToWatchlist).thenReturn(false);
+
+        final loadingIndicatorFinder = find.byType(CircularProgressIndicator);
+        await tester.pumpWidget(_makeTestableWidget(MovieDetailPage(id: 1)));
+
+        expect(loadingIndicatorFinder, findsOneWidget);
+      });
+
+  testWidgets('Should show error message when failed load detail',
+          (WidgetTester tester) async {
+        when(mockNotifier.movieState).thenReturn(RequestState.Error);
+        when(mockNotifier.movie).thenReturn(testMovieDetail);
+        when(mockNotifier.recommendationState).thenReturn(RequestState.Loaded);
+        when(mockNotifier.movieRecommendations).thenReturn(<Movie>[]);
+        when(mockNotifier.isAddedToWatchlist).thenReturn(false);
+        when(mockNotifier.message).thenReturn('Failed to load data');
+
+        final errorMessageFinder = find.text('Failed to load data');
+        await tester.pumpWidget(_makeTestableWidget(MovieDetailPage(id: 1)));
+
+        expect(errorMessageFinder, findsOneWidget);
+  });
+
+  testWidgets('Should show recommendation lists successful',
+          (WidgetTester tester) async {
+        when(mockNotifier.movieState).thenReturn(RequestState.Loaded);
+        when(mockNotifier.movie).thenReturn(testMovieDetail);
+        when(mockNotifier.recommendationState).thenReturn(RequestState.Loaded);
+        when(mockNotifier.movieRecommendations).thenReturn(testMovieList);
+        when(mockNotifier.isAddedToWatchlist).thenReturn(false);
+
+        final recommendationListFinder = find.byType(ListView);
+        await tester.pumpWidget(_makeTestableWidget(MovieDetailPage(id: 1)));
+
+        expect(recommendationListFinder, findsOneWidget);
+      });
 }

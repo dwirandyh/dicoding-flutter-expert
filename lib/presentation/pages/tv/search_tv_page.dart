@@ -1,7 +1,8 @@
 import 'package:ditonton/common/constants.dart';
 import 'package:ditonton/common/state_enum.dart';
+import 'package:ditonton/presentation/pages/tv/tv_detail_page.dart';
 import 'package:ditonton/presentation/provider/tv/search_tv_notifier.dart';
-import 'package:ditonton/presentation/widgets/item_card_list.dart';
+import 'package:ditonton/presentation/widgets/item_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -49,7 +50,16 @@ class SearchTvPage extends StatelessWidget {
                       padding: const EdgeInsets.all(8),
                       itemBuilder: (context, index) {
                         final tv = data.searchResult[index];
-                        return ItemCard(ItemData(title: tv.originalName, overview: tv.overview, posterPath: tv.posterPath));
+                        return ItemCard(
+                          item: ItemData(title: tv.originalName, overview: tv.overview, posterPath: tv.posterPath),
+                          onTap: () {
+                            Navigator.pushNamed(
+                              context,
+                              TvDetailPage.ROUTE_NAME,
+                              arguments: tv.id,
+                            );
+                          },
+                        );
                       },
                       itemCount: result.length,
                     ),
