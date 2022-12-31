@@ -52,7 +52,16 @@ void main() {
     nextEpisodeToAir: "nextEpisodeToAir",
     numberOfEpisodes: 1,
     numberOfSeasons: 1,
-    seasons: [Season(airDate: DateTime(2017, 9, 7, 17, 30), episodeCount: 1, id: 1, name: "name", overview: "overview", posterPath: "posterPath", seasonNumber: 1)],
+    seasons: [
+      Season(
+          airDate: DateTime(2017, 9, 7, 17, 30),
+          episodeCount: 1,
+          id: 1,
+          name: "name",
+          overview: "overview",
+          posterPath: "posterPath",
+          seasonNumber: 1)
+    ],
     status: "status",
     tagline: "tagline",
     type: "type",
@@ -60,7 +69,7 @@ void main() {
 
   final testTv = Tv(
       firstAirDate: DateTime(2017, 9, 7, 17, 30),
-      genreIds: [1,2],
+      genreIds: [1, 2],
       id: 12,
       name: "dummy name",
       originCountry: ["dummy country"],
@@ -71,8 +80,7 @@ void main() {
       posterPath: "dummy posterPath",
       voteAverage: 5,
       voteCount: 20,
-      backdropPath: 'dummy backdrop'
-  );
+      backdropPath: 'dummy backdrop');
 
   final testTvs = [testTv];
 
@@ -155,21 +163,22 @@ void main() {
   });
 
   testWidgets('Should show loading indicator while fetching detail',
-          (WidgetTester tester) async {
-    when(mockNotifier.tvState).thenReturn(RequestState.Loaded);
+      (WidgetTester tester) async {
+    when(mockNotifier.tvState).thenReturn(RequestState.Loading);
     when(mockNotifier.tv).thenReturn(tvDetail);
     when(mockNotifier.recommendationState).thenReturn(RequestState.Loaded);
     when(mockNotifier.tvRecommendations).thenReturn(<Tv>[]);
     when(mockNotifier.isAddedToWatchlist).thenReturn(false);
 
-    final loadingIndicatorFinder = find.byType(CircularProgressIndicator);
+    final loadingIndicatorFinder =
+        find.byKey(Key('tvdetail-progress-indicator'));
     await tester.pumpWidget(_makeTestableWidget(TvDetailPage(id: 1)));
 
     expect(loadingIndicatorFinder, findsOneWidget);
   });
 
   testWidgets('Should show error message when failed load detail',
-          (WidgetTester tester) async {
+      (WidgetTester tester) async {
     when(mockNotifier.tvState).thenReturn(RequestState.Error);
     when(mockNotifier.tv).thenReturn(tvDetail);
     when(mockNotifier.recommendationState).thenReturn(RequestState.Loaded);
@@ -184,14 +193,15 @@ void main() {
   });
 
   testWidgets('Should show recommendation lists successful',
-          (WidgetTester tester) async {
+      (WidgetTester tester) async {
     when(mockNotifier.tvState).thenReturn(RequestState.Loaded);
     when(mockNotifier.tv).thenReturn(tvDetail);
     when(mockNotifier.recommendationState).thenReturn(RequestState.Loaded);
     when(mockNotifier.tvRecommendations).thenReturn(testTvs);
     when(mockNotifier.isAddedToWatchlist).thenReturn(false);
 
-    final recommendationListFinder = find.byType(ListView);
+    final recommendationListFinder =
+        find.byKey(Key('tv-detail-recommendation-listview'));
     await tester.pumpWidget(_makeTestableWidget(TvDetailPage(id: 1)));
 
     expect(recommendationListFinder, findsOneWidget);

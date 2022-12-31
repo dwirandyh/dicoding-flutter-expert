@@ -1,4 +1,3 @@
-
 import 'package:ditonton/domain/entities/genre.dart';
 import 'package:ditonton/domain/entities/tv_season.dart';
 import 'package:equatable/equatable.dart';
@@ -33,8 +32,8 @@ class TvDetail extends Equatable {
     required this.voteCount,
   });
 
-  final bool adult;
-  final String backdropPath;
+  final bool? adult;
+  final String? backdropPath;
   final List<dynamic> episodeRunTime;
   final DateTime firstAirDate;
   final List<Genre> genres;
@@ -52,7 +51,7 @@ class TvDetail extends Equatable {
   final String originalName;
   final String overview;
   final double popularity;
-  final String posterPath;
+  final String? posterPath;
   final List<Season> seasons;
   final String status;
   final String tagline;
@@ -63,31 +62,31 @@ class TvDetail extends Equatable {
   @override
   // TODO: implement props
   List<Object?> get props => [
-    adult,
-    backdropPath,
-    episodeRunTime,
-    firstAirDate,
-    genres,
-    homepage,
-    id,
-    inProduction,
-    languages,
-    lastAirDate,
-    name,
-    nextEpisodeToAir,
-    numberOfEpisodes,
-    numberOfSeasons,
-    originCountry,
-    originalLanguage,
-    originalName,
-    overview,
-    popularity,
-    posterPath,
-    seasons,
-    status,
-    tagline,
-    type,
-    voteAverage,
-    voteCount,
-  ];
+        adult,
+        backdropPath,
+        episodeRunTime,
+        firstAirDate,
+        genres,
+        homepage,
+        id,
+        inProduction,
+        languages,
+        lastAirDate,
+        name,
+        nextEpisodeToAir,
+        numberOfEpisodes,
+        numberOfSeasons,
+        originCountry,
+        originalLanguage,
+        originalName,
+        overview,
+        popularity,
+        posterPath,
+        seasons,
+        status,
+        tagline,
+        type,
+        voteAverage,
+        voteCount,
+      ];
 }

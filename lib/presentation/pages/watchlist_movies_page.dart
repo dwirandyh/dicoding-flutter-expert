@@ -1,6 +1,8 @@
 import 'package:ditonton/common/state_enum.dart';
 import 'package:ditonton/common/utils.dart';
+import 'package:ditonton/domain/entities/watchlist.dart';
 import 'package:ditonton/presentation/pages/movie_detail_page.dart';
+import 'package:ditonton/presentation/pages/tv/tv_detail_page.dart';
 import 'package:ditonton/presentation/provider/watchlist_movie_notifier.dart';
 import 'package:ditonton/presentation/widgets/item_card.dart';
 import 'package:flutter/material.dart';
@@ -51,14 +53,19 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
             } else if (data.watchlistState == RequestState.Loaded) {
               return ListView.builder(
                 itemBuilder: (context, index) {
-                  final movie = data.watchlistMovies[index];
+                  final watchlist = data.watchlistMovies[index];
                   return ItemCard(
-                    item: ItemData(title: movie.title, overview: movie.overview, posterPath: movie.posterPath),
+                    item: ItemData(
+                        title: watchlist.title,
+                        overview: watchlist.overview,
+                        posterPath: watchlist.posterPath),
                     onTap: () {
                       Navigator.pushNamed(
                         context,
-                        MovieDetailPage.ROUTE_NAME,
-                        arguments: movie.id,
+                        watchlist.type == WatchListType.movie
+                            ? MovieDetailPage.ROUTE_NAME
+                            : TvDetailPage.ROUTE_NAME,
+                        arguments: watchlist.id,
                       );
                     },
                   );
