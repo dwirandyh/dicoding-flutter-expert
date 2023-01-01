@@ -6,8 +6,22 @@ import 'package:ditonton/presentation/widgets/item_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class SearchTvPage extends StatelessWidget {
+class SearchTvPage extends StatefulWidget {
   static const ROUTE_NAME = '/search/tv';
+
+  const SearchTvPage({Key? key}) : super(key: key);
+
+  @override
+  State<SearchTvPage> createState() => _SearchTvPageState();
+}
+
+class _SearchTvPageState extends State<SearchTvPage> {
+  @override
+  void initState() {
+    super.initState();
+    Future.microtask(() =>
+        Provider.of<SearchTvNotifier>(context, listen: false).resetState());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +65,10 @@ class SearchTvPage extends StatelessWidget {
                       itemBuilder: (context, index) {
                         final tv = data.searchResult[index];
                         return ItemCard(
-                          item: ItemData(title: tv.originalName, overview: tv.overview, posterPath: tv.posterPath),
+                          item: ItemData(
+                              title: tv.originalName,
+                              overview: tv.overview,
+                              posterPath: tv.posterPath),
                           onTap: () {
                             Navigator.pushNamed(
                               context,

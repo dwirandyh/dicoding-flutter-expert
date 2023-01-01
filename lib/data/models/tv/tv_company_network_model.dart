@@ -13,21 +13,23 @@ class TvCompanyNetworkModel {
   final String? logoPath;
   final String originCountry;
 
-  factory TvCompanyNetworkModel.fromRawJson(String str) => TvCompanyNetworkModel.fromJson(json.decode(str));
+  factory TvCompanyNetworkModel.fromRawJson(String str) =>
+      TvCompanyNetworkModel.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory TvCompanyNetworkModel.fromJson(Map<String, dynamic> json) => TvCompanyNetworkModel(
-    id: json["id"],
-    name: json["name"],
-    logoPath: json["logo_path"] == null ? null : json["logo_path"],
-    originCountry: json["origin_country"],
-  );
+  factory TvCompanyNetworkModel.fromJson(Map<String, dynamic> json) =>
+      TvCompanyNetworkModel(
+        id: json["id"],
+        name: json["name"],
+        logoPath: json["logo_path"] == null ? null : json["logo_path"],
+        originCountry: json["origin_country"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "name": name,
-    "logo_path": logoPath == null ? null : logoPath,
-    "origin_country": originCountry,
-  };
+        "id": id,
+        "name": name,
+        "logo_path": logoPath == null ? null : logoPath,
+        "origin_country": originCountry,
+      };
 }

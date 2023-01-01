@@ -17,16 +17,15 @@ class HomeTvPage extends StatefulWidget {
 }
 
 class _HomeTvPageState extends State<HomeTvPage> {
-
   @override
   void initState() {
     super.initState();
-    Future.microtask(
-            () => Provider.of<TvListNotifier>(context, listen: false)
-          ..fetchNowPlayingTvs()
-          ..fetchPopularTvs()
-          ..fetchTopRatedTvs());
+    Future.microtask(() => Provider.of<TvListNotifier>(context, listen: false)
+      ..fetchNowPlayingTvs()
+      ..fetchPopularTvs()
+      ..fetchTopRatedTvs());
   }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -34,8 +33,8 @@ class _HomeTvPageState extends State<HomeTvPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildSubHeading(
-              title: "Now Playing TV Series",
-              onTap: () =>
+            title: "Now Playing TV Series",
+            onTap: () =>
                 Navigator.pushNamed(context, NowPlayingTvsPage.ROUTE_NAME),
           ),
           Consumer<TvListNotifier>(builder: (context, data, child) {
@@ -45,14 +44,18 @@ class _HomeTvPageState extends State<HomeTvPage> {
                 child: CircularProgressIndicator(),
               );
             } else if (state == RequestState.Loaded) {
-              List<PosterCardData> posterCards = data.nowPlayingTvs.map((e) => PosterCardData(e.posterPath)).toList();
-              return PosterCardList(items: posterCards, onTap: (index) {
-                Navigator.pushNamed(
-                  context,
-                  TvDetailPage.ROUTE_NAME,
-                  arguments: data.nowPlayingTvs[index].id,
-                );
-              });
+              List<PosterCardData> posterCards = data.nowPlayingTvs
+                  .map((e) => PosterCardData(e.posterPath))
+                  .toList();
+              return PosterCardList(
+                  items: posterCards,
+                  onTap: (index) {
+                    Navigator.pushNamed(
+                      context,
+                      TvDetailPage.ROUTE_NAME,
+                      arguments: data.nowPlayingTvs[index].id,
+                    );
+                  });
             } else {
               return Text('Failed');
             }
@@ -69,14 +72,18 @@ class _HomeTvPageState extends State<HomeTvPage> {
                 child: CircularProgressIndicator(),
               );
             } else if (state == RequestState.Loaded) {
-              List<PosterCardData> posterCards = data.popularTvs.map((e) => PosterCardData(e.posterPath ?? "")).toList();
-              return PosterCardList(items: posterCards, onTap: (index) {
-                Navigator.pushNamed(
-                  context,
-                  TvDetailPage.ROUTE_NAME,
-                  arguments: data.popularTvs[index].id,
-                );
-              });
+              List<PosterCardData> posterCards = data.popularTvs
+                  .map((e) => PosterCardData(e.posterPath ?? ""))
+                  .toList();
+              return PosterCardList(
+                  items: posterCards,
+                  onTap: (index) {
+                    Navigator.pushNamed(
+                      context,
+                      TvDetailPage.ROUTE_NAME,
+                      arguments: data.popularTvs[index].id,
+                    );
+                  });
             } else {
               return Text('Failed');
             }
@@ -93,14 +100,18 @@ class _HomeTvPageState extends State<HomeTvPage> {
                 child: CircularProgressIndicator(),
               );
             } else if (state == RequestState.Loaded) {
-              List<PosterCardData> posterCards = data.topRatedTvs.map((e) => PosterCardData(e.posterPath ?? "")).toList();
-              return PosterCardList(items: posterCards, onTap: (index) {
-                Navigator.pushNamed(
-                  context,
-                  TvDetailPage.ROUTE_NAME,
-                  arguments: data.topRatedTvs[index].id,
-                );
-              });
+              List<PosterCardData> posterCards = data.topRatedTvs
+                  .map((e) => PosterCardData(e.posterPath ?? ""))
+                  .toList();
+              return PosterCardList(
+                  items: posterCards,
+                  onTap: (index) {
+                    Navigator.pushNamed(
+                      context,
+                      TvDetailPage.ROUTE_NAME,
+                      arguments: data.topRatedTvs[index].id,
+                    );
+                  });
             } else {
               return Text('Failed');
             }
@@ -113,10 +124,15 @@ class _HomeTvPageState extends State<HomeTvPage> {
   Row _buildSubHeading({required String title, required Function() onTap}) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisSize: MainAxisSize.min,
       children: [
-        Text(
-          title,
-          style: kHeading6,
+        Expanded(
+          child: Text(
+            title,
+            style: kHeading6,
+            softWrap: false,
+            overflow: TextOverflow.fade,
+          ),
         ),
         InkWell(
           onTap: onTap,

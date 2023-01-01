@@ -251,7 +251,7 @@ class DetailContent extends StatelessWidget {
                       Navigator.pushReplacementNamed(
                         context,
                         TvDetailPage.ROUTE_NAME,
-                        arguments: tv.id,
+                        arguments: recommendation.id,
                       );
                     },
                     child: _buildPosterImage(recommendation.posterPath),
@@ -262,7 +262,7 @@ class DetailContent extends StatelessWidget {
             ),
           );
         } else {
-          return Container();
+          return Text('No recommendation found');
         }
       },
     );
@@ -288,42 +288,53 @@ class DetailContent extends StatelessWidget {
   }
 
   Widget _buildSeason() {
-    return Container(
-      height: 200,
-      child: ListView.builder(
-          shrinkWrap: true,
-          scrollDirection: Axis.horizontal,
-          itemCount: tv.seasons.length,
-          itemBuilder: (context, index) {
-            final season = tv.seasons[index];
-            if (season.posterPath != null) {
+    if (tv.seasons.isNotEmpty) {
+      return Container(
+        height: 200,
+        child: ListView.builder(
+            shrinkWrap: true,
+            scrollDirection: Axis.horizontal,
+            itemCount: tv.seasons.length,
+            itemBuilder: (context, index) {
+              final season = tv.seasons[index];
               return Padding(
                 padding: const EdgeInsets.all(4.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.all(Radius.circular(8)),
-                      child: CachedNetworkImage(
-                        height: 140,
-                        imageUrl:
-                            'https://image.tmdb.org/t/p/w500${season.posterPath}',
-                        placeholder: (context, url) => Center(
-                          child: CircularProgressIndicator(),
-                        ),
-                        errorWidget: (context, url, error) => Icon(Icons.error),
-                      ),
-                    ),
+                    _buildSeasonThumbnail(season),
                     SizedBox(height: 8),
                     _buildSeasonInfo(season)
                   ],
                 ),
               );
-            } else {
-              return Container();
-            }
-          }),
-    );
+            }),
+      );
+    } else {
+      return Text('No season found');
+    }
+  }
+
+  Widget _buildSeasonThumbnail(Season season) {
+    if (season.posterPath != null) {
+      return ClipRRect(
+        child: Container(
+            color: Colors.grey,
+            height: 120,
+            width: 80,
+            child: Icon(Icons.error)),
+        borderRadius: BorderRadius.all(Radius.circular(8)),
+      );
+    } else {
+      return ClipRRect(
+        child: Container(
+            color: Colors.grey,
+            height: 120,
+            width: 80,
+            child: Icon(Icons.error)),
+        borderRadius: BorderRadius.all(Radius.circular(8)),
+      );
+    }
   }
 
   Widget _buildSeasonInfo(Season season) {

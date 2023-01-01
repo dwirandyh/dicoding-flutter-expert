@@ -16,12 +16,11 @@ class HomeMoviePage extends StatefulWidget {
 }
 
 class _HomeMoviePageState extends State<HomeMoviePage> {
-
   @override
   void initState() {
     super.initState();
     Future.microtask(
-            () => Provider.of<MovieListNotifier>(context, listen: false)
+        () => Provider.of<MovieListNotifier>(context, listen: false)
           ..fetchNowPlayingMovies()
           ..fetchPopularMovies()
           ..fetchTopRatedMovies());
@@ -44,14 +43,18 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
                 child: CircularProgressIndicator(),
               );
             } else if (state == RequestState.Loaded) {
-              List<PosterCardData> posterCards = data.nowPlayingMovies.map((e) => PosterCardData(e.posterPath ?? "")).toList();
-              return PosterCardList(items: posterCards, onTap: (index) {
-                Navigator.pushNamed(
-                  context,
-                  MovieDetailPage.ROUTE_NAME,
-                  arguments: data.nowPlayingMovies[index].id,
-                );
-              });
+              List<PosterCardData> posterCards = data.nowPlayingMovies
+                  .map((e) => PosterCardData(e.posterPath ?? ""))
+                  .toList();
+              return PosterCardList(
+                  items: posterCards,
+                  onTap: (index) {
+                    Navigator.pushNamed(
+                      context,
+                      MovieDetailPage.ROUTE_NAME,
+                      arguments: data.nowPlayingMovies[index].id,
+                    );
+                  });
             } else {
               return Text('Failed');
             }
@@ -68,14 +71,18 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
                 child: CircularProgressIndicator(),
               );
             } else if (state == RequestState.Loaded) {
-              List<PosterCardData> posterCards = data.popularMovies.map((e) => PosterCardData(e.posterPath ?? "")).toList();
-              return PosterCardList(items: posterCards, onTap: (index) {
-                Navigator.pushNamed(
-                  context,
-                  MovieDetailPage.ROUTE_NAME,
-                  arguments: data.popularMovies[index].id,
-                );
-              });
+              List<PosterCardData> posterCards = data.popularMovies
+                  .map((e) => PosterCardData(e.posterPath ?? ""))
+                  .toList();
+              return PosterCardList(
+                  items: posterCards,
+                  onTap: (index) {
+                    Navigator.pushNamed(
+                      context,
+                      MovieDetailPage.ROUTE_NAME,
+                      arguments: data.popularMovies[index].id,
+                    );
+                  });
             } else {
               return Text('Failed');
             }
@@ -92,14 +99,18 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
                 child: CircularProgressIndicator(),
               );
             } else if (state == RequestState.Loaded) {
-              List<PosterCardData> posterCards = data.topRatedMovies.map((e) => PosterCardData(e.posterPath ?? "")).toList();
-              return PosterCardList(items: posterCards, onTap: (index) {
-                Navigator.pushNamed(
-                  context,
-                  MovieDetailPage.ROUTE_NAME,
-                  arguments: data.topRatedMovies[index].id,
-                );
-              });
+              List<PosterCardData> posterCards = data.topRatedMovies
+                  .map((e) => PosterCardData(e.posterPath ?? ""))
+                  .toList();
+              return PosterCardList(
+                  items: posterCards,
+                  onTap: (index) {
+                    Navigator.pushNamed(
+                      context,
+                      MovieDetailPage.ROUTE_NAME,
+                      arguments: data.topRatedMovies[index].id,
+                    );
+                  });
             } else {
               return Text('Failed');
             }
@@ -113,9 +124,13 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          title,
-          style: kHeading6,
+        Expanded(
+          child: Text(
+            title,
+            style: kHeading6,
+            softWrap: false,
+            overflow: TextOverflow.fade,
+          ),
         ),
         InkWell(
           onTap: onTap,

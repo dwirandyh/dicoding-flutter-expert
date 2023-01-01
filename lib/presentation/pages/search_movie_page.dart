@@ -6,8 +6,23 @@ import 'package:ditonton/presentation/widgets/item_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class SearchMoviePage extends StatelessWidget {
+class SearchMoviePage extends StatefulWidget {
   static const ROUTE_NAME = '/search/movie';
+
+  const SearchMoviePage({Key? key}) : super(key: key);
+
+  @override
+  State<SearchMoviePage> createState() => _SearchMoviePageState();
+}
+
+class _SearchMoviePageState extends State<SearchMoviePage> {
+  @override
+  void initState() {
+    super.initState();
+
+    Future.microtask(() =>
+        Provider.of<MovieSearchNotifier>(context, listen: false).resetState());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +66,10 @@ class SearchMoviePage extends StatelessWidget {
                       itemBuilder: (context, index) {
                         final movie = data.searchResult[index];
                         return ItemCard(
-                          item: ItemData(title: movie.title, overview: movie.overview, posterPath: movie.posterPath),
+                          item: ItemData(
+                              title: movie.title,
+                              overview: movie.overview,
+                              posterPath: movie.posterPath),
                           onTap: () {
                             Navigator.pushNamed(
                               context,

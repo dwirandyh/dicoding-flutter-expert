@@ -67,8 +67,13 @@ class TvDetailNotifier extends ChangeNotifier {
             _message = failure.message;
           },
           (tvs) {
-            _recommendationState = RequestState.Loaded;
-            _tvRecommendations = tvs;
+            if (tvs.isNotEmpty) {
+              _recommendationState = RequestState.Loaded;
+              _tvRecommendations = tvs;
+            } else {
+              _recommendationState = RequestState.Empty;
+              _tvRecommendations = tvs;
+            }
           },
         );
         _tvState = RequestState.Loaded;
@@ -86,8 +91,7 @@ class TvDetailNotifier extends ChangeNotifier {
         title: tv.originalName,
         posterPath: tv.posterPath,
         overview: tv.overview,
-        type: WatchListType.tv
-    ));
+        type: WatchListType.tv));
 
     await result.fold(
       (failure) async {
@@ -107,8 +111,7 @@ class TvDetailNotifier extends ChangeNotifier {
         title: tv.originalName,
         posterPath: tv.posterPath,
         overview: tv.overview,
-        type: WatchListType.tv
-    ));
+        type: WatchListType.tv));
 
     await result.fold(
       (failure) async {
