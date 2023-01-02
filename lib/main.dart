@@ -1,5 +1,6 @@
 import 'package:ditonton/common/constants.dart';
 import 'package:ditonton/common/utils.dart';
+import 'package:ditonton/presentation/bloc/tv/now_playing_tv_bloc.dart';
 import 'package:ditonton/presentation/bloc/tv/search_tv_bloc.dart';
 import 'package:ditonton/presentation/pages/about_page.dart';
 import 'package:ditonton/presentation/pages/home_page.dart';
@@ -19,12 +20,10 @@ import 'package:ditonton/presentation/provider/movie_list_notifier.dart';
 import 'package:ditonton/presentation/provider/movie_search_notifier.dart';
 import 'package:ditonton/presentation/provider/popular_movies_notifier.dart';
 import 'package:ditonton/presentation/provider/top_rated_movies_notifier.dart';
-import 'package:ditonton/presentation/provider/tv/now_playing_tvs_notifier.dart';
 import 'package:ditonton/presentation/provider/tv/popular_tvs_notifier.dart';
 import 'package:ditonton/presentation/provider/tv/top_rated_tvs_notifier.dart';
 import 'package:ditonton/presentation/provider/tv/tv_detail_notifier.dart';
 import 'package:ditonton/presentation/provider/tv/tv_list_provider.dart';
-import 'package:ditonton/presentation/provider/tv/search_tv_notifier.dart';
 import 'package:ditonton/presentation/provider/watchlist_movie_notifier.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -66,10 +65,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => di.locator<PopularTvsNotifier>()),
         ChangeNotifierProvider(
             create: (_) => di.locator<TopRatedTvsNotifier>()),
-        ChangeNotifierProvider(
-            create: (_) => di.locator<NowPlayingTvsNotifier>()),
-        ChangeNotifierProvider(create: (_) => di.locator<TvDetailNotifier>()),
+        BlocProvider(create: (_) => di.locator<NowPlayingTvBloc>()),
         BlocProvider(create: (_) => di.locator<SearchTvBloc>()),
+        ChangeNotifierProvider(create: (_) => di.locator<TvDetailNotifier>()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
