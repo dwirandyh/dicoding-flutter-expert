@@ -17,12 +17,10 @@ void main() {
   });
 
   Widget _makeTestableWidget(Widget body) {
-    return BlocProvider<NowPlayingTvBloc>(
-      create: (_) => mockBloc,
+    return BlocProvider<NowPlayingTvBloc>.value(
+      value: mockBloc,
       child: MaterialApp(
-        home: Scaffold(
-          body: body,
-        ),
+        home: body,
       ),
     );
   }

@@ -9,9 +9,7 @@ import 'package:ditonton/presentation/provider/tv/tv_list_provider.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import '../../bloc/tv/now_playing_tv_bloc_test.mocks.dart';
-import 'popular_tv_notifier_test.mocks.dart';
-import 'top_rated_tv_notifier_test.mocks.dart';
+import 'tv_list_notifier_test.mocks.dart';
 
 @GenerateMocks([GetNowPlayingTv, GetPopularTv, GetTopRatedTv])
 void main() {
