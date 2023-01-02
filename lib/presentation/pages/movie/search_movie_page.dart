@@ -1,9 +1,9 @@
 import 'package:ditonton/common/constants.dart';
-import 'package:ditonton/common/state_enum.dart';
+import 'package:ditonton/presentation/bloc/movie/search_movie_bloc.dart';
 import 'package:ditonton/presentation/pages/movie_detail_page.dart';
-import 'package:ditonton/presentation/provider/movie_search_notifier.dart';
 import 'package:ditonton/presentation/widgets/item_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 class SearchMoviePage extends StatefulWidget {
@@ -20,8 +20,8 @@ class _SearchMoviePageState extends State<SearchMoviePage> {
   void initState() {
     super.initState();
 
-    Future.microtask(() =>
-        Provider.of<MovieSearchNotifier>(context, listen: false).resetState());
+    Future.microtask(
+        () => context.read<SearchMovieBloc>().add(OnSearchMovieInitState()));
   }
 
   @override
@@ -37,8 +37,9 @@ class _SearchMoviePageState extends State<SearchMoviePage> {
           children: [
             TextField(
               onSubmitted: (query) {
-                Provider.of<MovieSearchNotifier>(context, listen: false)
-                    .fetchMovieSearch(query);
+                context
+                    .read<SearchMovieBloc>()
+                    .add(OnSearchMovieQueryChanged(query));
               },
               decoration: InputDecoration(
                 hintText: 'Search title',
@@ -52,19 +53,19 @@ class _SearchMoviePageState extends State<SearchMoviePage> {
               'Search Result',
               style: kHeading6,
             ),
-            Consumer<MovieSearchNotifier>(
-              builder: (context, data, child) {
-                if (data.state == RequestState.Loading) {
+            BlocBuilder<SearchMovieBloc, SearchMovieState>(
+              builder: (context, state) {
+                if (state is SearchMovieLoading) {
                   return Center(
                     child: CircularProgressIndicator(),
                   );
-                } else if (data.state == RequestState.Loaded) {
-                  final result = data.searchResult;
+                } else if (state is SearchMovieHasData) {
+                  final result = state.result;
                   return Expanded(
                     child: ListView.builder(
                       padding: const EdgeInsets.all(8),
                       itemBuilder: (context, index) {
-                        final movie = data.searchResult[index];
+                        final movie = state.result[index];
                         return ItemCard(
                           item: ItemData(
                               title: movie.title,
@@ -82,10 +83,12 @@ class _SearchMoviePageState extends State<SearchMoviePage> {
                       itemCount: result.length,
                     ),
                   );
-                } else {
+                } else if (state is SearchMovieError) {
                   return Expanded(
                     child: Container(),
                   );
+                } else {
+                  return Container();
                 }
               },
             ),
