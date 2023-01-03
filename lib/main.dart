@@ -7,6 +7,7 @@ import 'package:ditonton/presentation/bloc/tv/now_playing_tv_bloc.dart';
 import 'package:ditonton/presentation/bloc/tv/popular_tv_bloc.dart';
 import 'package:ditonton/presentation/bloc/tv/search_tv_bloc.dart';
 import 'package:ditonton/presentation/bloc/tv/top_rated_tv_bloc.dart';
+import 'package:ditonton/presentation/bloc/watchlist/watchlist_bloc.dart';
 import 'package:ditonton/presentation/pages/about_page.dart';
 import 'package:ditonton/presentation/pages/home_page.dart';
 import 'package:ditonton/presentation/pages/movie_detail_page.dart';
@@ -56,8 +57,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (_) => di.locator<PopularMovieBloc>(),
         ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<WatchlistMovieNotifier>(),
+        BlocProvider(
+          create: (_) => di.locator<WatchlistBloc>(),
         ),
         ChangeNotifierProvider(
           create: (_) => di.locator<TvListNotifier>(),
