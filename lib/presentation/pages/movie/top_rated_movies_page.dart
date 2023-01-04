@@ -1,5 +1,5 @@
 import 'package:ditonton/presentation/bloc/movie/top_rated_movie_bloc.dart';
-import 'package:ditonton/presentation/pages/movie_detail_page.dart';
+import 'package:ditonton/presentation/pages/movie/movie_detail_page.dart';
 import 'package:ditonton/presentation/widgets/item_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

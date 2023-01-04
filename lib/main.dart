@@ -1,5 +1,7 @@
 import 'package:ditonton/common/constants.dart';
 import 'package:ditonton/common/utils.dart';
+import 'package:ditonton/presentation/bloc/movie/movie_detail_bloc.dart';
+import 'package:ditonton/presentation/bloc/movie/movie_recommendation_bloc.dart';
 import 'package:ditonton/presentation/bloc/movie/popular_movie_bloc.dart';
 import 'package:ditonton/presentation/bloc/movie/search_movie_bloc.dart';
 import 'package:ditonton/presentation/bloc/movie/top_rated_movie_bloc.dart';
@@ -7,10 +9,13 @@ import 'package:ditonton/presentation/bloc/tv/now_playing_tv_bloc.dart';
 import 'package:ditonton/presentation/bloc/tv/popular_tv_bloc.dart';
 import 'package:ditonton/presentation/bloc/tv/search_tv_bloc.dart';
 import 'package:ditonton/presentation/bloc/tv/top_rated_tv_bloc.dart';
+import 'package:ditonton/presentation/bloc/tv/tv_detail_bloc.dart';
+import 'package:ditonton/presentation/bloc/tv/tv_recommendation_bloc.dart';
 import 'package:ditonton/presentation/bloc/watchlist/watchlist_bloc.dart';
+import 'package:ditonton/presentation/bloc/watchlist/watchlist_status_bloc.dart';
 import 'package:ditonton/presentation/pages/about_page.dart';
 import 'package:ditonton/presentation/pages/home_page.dart';
-import 'package:ditonton/presentation/pages/movie_detail_page.dart';
+import 'package:ditonton/presentation/pages/movie/movie_detail_page.dart';
 import 'package:ditonton/presentation/pages/home_movie_page.dart';
 import 'package:ditonton/presentation/pages/movie/popular_movies_page.dart';
 import 'package:ditonton/presentation/pages/movie/search_movie_page.dart';
@@ -45,8 +50,11 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => di.locator<MovieListNotifier>(),
         ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<MovieDetailNotifier>(),
+        BlocProvider(
+          create: (_) => di.locator<MovieDetailBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<MovieRecommendationBloc>(),
         ),
         BlocProvider(
           create: (_) => di.locator<SearchMovieBloc>(),
@@ -60,6 +68,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (_) => di.locator<WatchlistBloc>(),
         ),
+        BlocProvider(
+          create: (_) => di.locator<WatchlistStatusBloc>(),
+        ),
         ChangeNotifierProvider(
           create: (_) => di.locator<TvListNotifier>(),
         ),
@@ -67,7 +78,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => di.locator<TopRatedTvBloc>()),
         BlocProvider(create: (_) => di.locator<NowPlayingTvBloc>()),
         BlocProvider(create: (_) => di.locator<SearchTvBloc>()),
-        ChangeNotifierProvider(create: (_) => di.locator<TvDetailNotifier>()),
+        BlocProvider(create: (_) => di.locator<TvDetailBloc>()),
+        BlocProvider(create: (_) => di.locator<TvRecommendationBloc>()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

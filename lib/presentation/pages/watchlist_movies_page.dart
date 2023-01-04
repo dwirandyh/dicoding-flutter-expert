@@ -2,7 +2,7 @@ import 'package:ditonton/common/state_enum.dart';
 import 'package:ditonton/common/utils.dart';
 import 'package:ditonton/domain/entities/watchlist.dart';
 import 'package:ditonton/presentation/bloc/watchlist/watchlist_bloc.dart';
-import 'package:ditonton/presentation/pages/movie_detail_page.dart';
+import 'package:ditonton/presentation/pages/movie/movie_detail_page.dart';
 import 'package:ditonton/presentation/pages/tv/tv_detail_page.dart';
 import 'package:ditonton/presentation/widgets/item_card.dart';
 import 'package:flutter/material.dart';
