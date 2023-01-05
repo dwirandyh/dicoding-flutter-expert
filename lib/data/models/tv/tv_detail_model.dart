@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:ditonton/common/datetime_parser.dart';
 import 'package:ditonton/data/models/genre_model.dart';
 import 'package:ditonton/data/models/tv/tv_company_network_model.dart';
 import 'package:ditonton/data/models/tv/tv_created_by_model.dart';
@@ -90,14 +91,14 @@ class TvDetailModel extends Equatable {
             json["created_by"].map((x) => TvCreatedByModel.fromJson(x))),
         episodeRunTime:
             List<dynamic>.from(json["episode_run_time"].map((x) => x)),
-        firstAirDate: DateTime.parse(json["first_air_date"]),
+        firstAirDate: DateTimeParser.parse(json["first_air_date"]),
         genres: List<GenreModel>.from(
             json["genres"].map((x) => GenreModel.fromJson(x))),
         homepage: json["homepage"],
         id: json["id"],
         inProduction: json["in_production"],
         languages: List<String>.from(json["languages"].map((x) => x)),
-        lastAirDate: DateTime.parse(json["last_air_date"]),
+        lastAirDate: DateTimeParser.parse(json["last_air_date"]),
         lastEpisodeToAir:
             LastEpisodeToAir.fromJson(json["last_episode_to_air"]),
         name: json["name"],

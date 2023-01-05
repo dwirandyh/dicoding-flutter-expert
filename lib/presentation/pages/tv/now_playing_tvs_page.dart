@@ -1,10 +1,8 @@
-import 'package:ditonton/common/state_enum.dart';
 import 'package:ditonton/presentation/bloc/tv/now_playing_tv_bloc.dart';
 import 'package:ditonton/presentation/pages/tv/tv_detail_page.dart';
 import 'package:ditonton/presentation/widgets/item_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 
 class NowPlayingTvsPage extends StatefulWidget {
   static const ROUTE_NAME = '/now-playing-tv';

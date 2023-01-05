@@ -7,11 +7,8 @@ class ItemData {
   final String? overview;
   final String? posterPath;
 
-  ItemData({
-    required this.title,
-    required this.overview,
-    required this.posterPath
-  });
+  ItemData(
+      {required this.title, required this.overview, required this.posterPath});
 }
 
 class ItemCard extends StatelessWidget {
@@ -76,8 +73,7 @@ class ItemCard extends StatelessWidget {
   Widget _buildThumbnail() {
     if (item.posterPath != null) {
       return ClipRRect(
-        child:
-        CachedNetworkImage(
+        child: CachedNetworkImage(
           imageUrl: '$BASE_IMAGE_URL${item.posterPath}',
           width: 80,
           placeholder: (context, url) => Center(
@@ -90,11 +86,10 @@ class ItemCard extends StatelessWidget {
     } else {
       return ClipRRect(
         child: Container(
-          color: Colors.grey,
+            color: Colors.grey,
             height: 120,
             width: 80,
-            child: Icon(Icons.error)
-        ),
+            child: Icon(Icons.error)),
         borderRadius: BorderRadius.all(Radius.circular(8)),
       );
     }

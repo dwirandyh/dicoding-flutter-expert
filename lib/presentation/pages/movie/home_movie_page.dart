@@ -1,12 +1,13 @@
 import 'package:ditonton/common/constants.dart';
-import 'package:ditonton/common/state_enum.dart';
+import 'package:ditonton/presentation/bloc/movie/now_playing_movie_bloc.dart';
+import 'package:ditonton/presentation/bloc/movie/popular_movie_bloc.dart';
+import 'package:ditonton/presentation/bloc/movie/top_rated_movie_bloc.dart';
 import 'package:ditonton/presentation/pages/movie/movie_detail_page.dart';
 import 'package:ditonton/presentation/pages/movie/popular_movies_page.dart';
 import 'package:ditonton/presentation/pages/movie/top_rated_movies_page.dart';
-import 'package:ditonton/presentation/provider/movie_list_notifier.dart';
 import 'package:ditonton/presentation/widgets/poster_card_list.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeMoviePage extends StatefulWidget {
   const HomeMoviePage({Key? key}) : super(key: key);
@@ -19,11 +20,11 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(
-        () => Provider.of<MovieListNotifier>(context, listen: false)
-          ..fetchNowPlayingMovies()
-          ..fetchPopularMovies()
-          ..fetchTopRatedMovies());
+    Future.microtask(() {
+      context.read<NowPlayingMovieBloc>().add(OnFetchNowPlayingMovie());
+      context.read<TopRatedMovieBloc>().add(OnFetchTopRatedMovie());
+      context.read<PopularMovieBloc>().add(OnFetchPopularMovie());
+    });
   }
 
   @override
@@ -36,14 +37,14 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
             'Now Playing Movie',
             style: kHeading6,
           ),
-          Consumer<MovieListNotifier>(builder: (context, data, child) {
-            final state = data.nowPlayingState;
-            if (state == RequestState.Loading) {
+          BlocBuilder<NowPlayingMovieBloc, NowPlayingMovieState>(
+              builder: (context, state) {
+            if (state is NowPlayingMovieLoading) {
               return Center(
                 child: CircularProgressIndicator(),
               );
-            } else if (state == RequestState.Loaded) {
-              List<PosterCardData> posterCards = data.nowPlayingMovies
+            } else if (state is NowPlayingMovieHasData) {
+              List<PosterCardData> posterCards = state.result
                   .map((e) => PosterCardData(e.posterPath ?? ""))
                   .toList();
               return PosterCardList(
@@ -52,7 +53,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
                     Navigator.pushNamed(
                       context,
                       MovieDetailPage.ROUTE_NAME,
-                      arguments: data.nowPlayingMovies[index].id,
+                      arguments: state.result[index].id,
                     );
                   });
             } else {
@@ -64,25 +65,26 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
             onTap: () =>
                 Navigator.pushNamed(context, PopularMoviesPage.ROUTE_NAME),
           ),
-          Consumer<MovieListNotifier>(builder: (context, data, child) {
-            final state = data.popularMoviesState;
-            if (state == RequestState.Loading) {
+          BlocBuilder<PopularMovieBloc, PopularMovieState>(
+              builder: (context, state) {
+            if (state is PopularMovieLoading) {
               return Center(
                 child: CircularProgressIndicator(),
               );
-            } else if (state == RequestState.Loaded) {
-              List<PosterCardData> posterCards = data.popularMovies
+            } else if (state is PopularMovieHasData) {
+              List<PosterCardData> posterCards = state.result
                   .map((e) => PosterCardData(e.posterPath ?? ""))
                   .toList();
               return PosterCardList(
-                  items: posterCards,
-                  onTap: (index) {
-                    Navigator.pushNamed(
-                      context,
-                      MovieDetailPage.ROUTE_NAME,
-                      arguments: data.popularMovies[index].id,
-                    );
-                  });
+                items: posterCards,
+                onTap: (index) {
+                  Navigator.pushNamed(
+                    context,
+                    MovieDetailPage.ROUTE_NAME,
+                    arguments: state.result[index].id,
+                  );
+                },
+              );
             } else {
               return Text('Failed');
             }
@@ -92,14 +94,14 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
             onTap: () =>
                 Navigator.pushNamed(context, TopRatedMoviesPage.ROUTE_NAME),
           ),
-          Consumer<MovieListNotifier>(builder: (context, data, child) {
-            final state = data.topRatedMoviesState;
-            if (state == RequestState.Loading) {
+          BlocBuilder<TopRatedMovieBloc, TopRatedMovieState>(
+              builder: (context, state) {
+            if (state is TopRatedMovieLoading) {
               return Center(
                 child: CircularProgressIndicator(),
               );
-            } else if (state == RequestState.Loaded) {
-              List<PosterCardData> posterCards = data.topRatedMovies
+            } else if (state is TopRatedMovieHasData) {
+              List<PosterCardData> posterCards = state.result
                   .map((e) => PosterCardData(e.posterPath ?? ""))
                   .toList();
               return PosterCardList(
@@ -108,7 +110,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
                     Navigator.pushNamed(
                       context,
                       MovieDetailPage.ROUTE_NAME,
-                      arguments: data.topRatedMovies[index].id,
+                      arguments: state.result[index].id,
                     );
                   });
             } else {

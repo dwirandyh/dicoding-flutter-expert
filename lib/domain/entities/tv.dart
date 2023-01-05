@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 
 class Tv extends Equatable {
-
   Tv({
     required this.backdropPath,
     required this.firstAirDate,
@@ -33,5 +32,19 @@ class Tv extends Equatable {
   final int voteCount;
 
   @override
-  List<Object?> get props => [backdropPath, firstAirDate, genreIds, id, name, originCountry, originalLanguage, originalName, overview, popularity, posterPath, voteAverage, voteCount];
+  List<Object?> get props => [
+        backdropPath,
+        firstAirDate,
+        genreIds,
+        id,
+        name,
+        originCountry,
+        originalLanguage,
+        originalName,
+        overview,
+        popularity,
+        posterPath,
+        voteAverage,
+        voteCount
+      ];
 }

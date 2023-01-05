@@ -11,10 +11,7 @@ class PosterCardList extends StatelessWidget {
   final List<PosterCardData> items;
   final Function(int)? onTap;
 
-  PosterCardList({
-    required this.items,
-    this.onTap
-  });
+  PosterCardList({required this.items, this.onTap});
 
   @override
   Widget build(BuildContext context) {

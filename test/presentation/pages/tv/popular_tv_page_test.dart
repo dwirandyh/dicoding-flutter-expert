@@ -1,7 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:ditonton/presentation/bloc/tv/now_playing_tv_bloc.dart';
 import 'package:ditonton/presentation/bloc/tv/popular_tv_bloc.dart';
-import 'package:ditonton/presentation/pages/tv/now_playing_tvs_page.dart';
 import 'package:ditonton/presentation/pages/tv/popular_tvs_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

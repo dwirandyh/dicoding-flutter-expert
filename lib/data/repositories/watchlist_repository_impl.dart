@@ -1,4 +1,3 @@
-
 import 'package:dartz/dartz.dart';
 import 'package:ditonton/common/exception.dart';
 import 'package:ditonton/common/failure.dart';
@@ -8,18 +7,15 @@ import 'package:ditonton/domain/entities/watchlist.dart';
 import 'package:ditonton/domain/repositories/watchlist_repository.dart';
 
 class WatchlistRepositoryImpl extends WatchlistRepository {
-
   final WatchlistDataSource localDataSource;
 
-  WatchlistRepositoryImpl({
-    required this.localDataSource
-  });
+  WatchlistRepositoryImpl({required this.localDataSource});
 
   @override
   Future<Either<Failure, String>> saveWatchlist(Watchlist watchlist) async {
     try {
-      final result =
-      await localDataSource.insertWatchlist(WatchListTable.fromEntity(watchlist));
+      final result = await localDataSource
+          .insertWatchlist(WatchListTable.fromEntity(watchlist));
       return Right(result);
     } on DatabaseException catch (e) {
       return Left(DatabaseFailure(e.message));
@@ -31,8 +27,8 @@ class WatchlistRepositoryImpl extends WatchlistRepository {
   @override
   Future<Either<Failure, String>> removeWatchlist(Watchlist watchlist) async {
     try {
-      final result =
-      await localDataSource.removeWatchlist(WatchListTable.fromEntity(watchlist));
+      final result = await localDataSource
+          .removeWatchlist(WatchListTable.fromEntity(watchlist));
       return Right(result);
     } on DatabaseException catch (e) {
       return Left(DatabaseFailure(e.message));

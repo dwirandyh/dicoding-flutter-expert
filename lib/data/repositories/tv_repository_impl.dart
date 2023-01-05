@@ -1,4 +1,3 @@
-
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
@@ -11,12 +10,9 @@ import 'package:ditonton/domain/entities/tv_detail.dart';
 import 'package:ditonton/domain/repositories/tv_repository.dart';
 
 class TvRepositoryImpl extends TvRepository {
-
   final TvRemoteDataSource remoteDataSource;
 
-  TvRepositoryImpl({
-    required this.remoteDataSource
-  });
+  TvRepositoryImpl({required this.remoteDataSource});
 
   @override
   Future<Either<Failure, List<Tv>>> getNowPlayingTv() async {

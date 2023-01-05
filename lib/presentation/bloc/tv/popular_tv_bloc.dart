@@ -4,7 +4,6 @@ import 'package:bloc/bloc.dart';
 import 'package:ditonton/domain/entities/tv.dart';
 import 'package:ditonton/domain/usecases/tv/get_popular_tv.dart';
 import 'package:equatable/equatable.dart';
-import 'package:meta/meta.dart';
 
 part 'popular_tv_event.dart';
 part 'popular_tv_state.dart';

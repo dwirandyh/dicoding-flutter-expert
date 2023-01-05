@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:ditonton/common/datetime_parser.dart';
 import 'package:ditonton/domain/entities/tv.dart';
 import 'package:equatable/equatable.dart';
 
@@ -39,9 +40,7 @@ class TvModel extends Equatable {
 
   factory TvModel.fromJson(Map<String, dynamic> json) => TvModel(
         backdropPath: json["backdrop_path"],
-        firstAirDate: json["first_air_date"] == null
-            ? DateTime.now()
-            : DateTime.parse(json["first_air_date"]),
+        firstAirDate: DateTimeParser.parse(json["first_air_date"] ?? ""),
         genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
         id: json["id"],
         name: json["name"],

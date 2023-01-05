@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:ditonton/domain/entities/tv.dart';
 import 'package:ditonton/domain/entities/watchlist.dart';
 import 'package:ditonton/domain/usecases/get_watchlist.dart';
 import 'package:equatable/equatable.dart';

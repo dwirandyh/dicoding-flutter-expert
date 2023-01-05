@@ -26,6 +26,7 @@ import 'package:ditonton/domain/usecases/tv/get_tv_recommendation.dart';
 import 'package:ditonton/domain/usecases/tv/search_tv.dart';
 import 'package:ditonton/presentation/bloc/movie/movie_detail_bloc.dart';
 import 'package:ditonton/presentation/bloc/movie/movie_recommendation_bloc.dart';
+import 'package:ditonton/presentation/bloc/movie/now_playing_movie_bloc.dart';
 import 'package:ditonton/presentation/bloc/movie/popular_movie_bloc.dart';
 import 'package:ditonton/presentation/bloc/movie/search_movie_bloc.dart';
 import 'package:ditonton/presentation/bloc/movie/top_rated_movie_bloc.dart';
@@ -37,11 +38,6 @@ import 'package:ditonton/presentation/bloc/tv/tv_detail_bloc.dart';
 import 'package:ditonton/presentation/bloc/tv/tv_recommendation_bloc.dart';
 import 'package:ditonton/presentation/bloc/watchlist/watchlist_bloc.dart';
 import 'package:ditonton/presentation/bloc/watchlist/watchlist_status_bloc.dart';
-import 'package:ditonton/presentation/provider/movie_detail_notifier.dart';
-import 'package:ditonton/presentation/provider/movie_list_notifier.dart';
-import 'package:ditonton/presentation/provider/tv/tv_detail_notifier.dart';
-import 'package:ditonton/presentation/provider/tv/tv_list_provider.dart';
-import 'package:ditonton/presentation/provider/watchlist_movie_notifier.dart';
 import 'package:http/http.dart' as http;
 import 'package:get_it/get_it.dart';
 
@@ -52,10 +48,8 @@ void init() {
 
   // MOVIE
   locator.registerFactory(
-    () => MovieListNotifier(
+    () => NowPlayingMovieBloc(
       getNowPlayingMovies: locator(),
-      getPopularMovies: locator(),
-      getTopRatedMovies: locator(),
     ),
   );
   locator.registerFactory(
@@ -98,13 +92,6 @@ void init() {
   );
 
   // TV
-  locator.registerFactory(
-    () => TvListNotifier(
-      getNowPlayingTv: locator(),
-      getPopularTv: locator(),
-      getTopRatedTv: locator(),
-    ),
-  );
 
   locator.registerFactory(
     () => PopularTvBloc(getPopularTv: locator()),

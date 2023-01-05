@@ -2,12 +2,15 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:ditonton/common/failure.dart';
 import 'package:ditonton/domain/entities/tv.dart';
+import 'package:ditonton/domain/usecases/tv/get_top_rated_tv.dart';
 import 'package:ditonton/presentation/bloc/tv/top_rated_tv_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../provider/tv/tv_list_notifier_test.mocks.dart';
+import 'top_rated_tv_bloc_test.mocks.dart';
 
+@GenerateMocks([GetTopRatedTv])
 void main() {
   late MockGetTopRatedTv mockGetTopRatedTv;
   late TopRatedTvBloc nowPlayingTvBloc;

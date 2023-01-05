@@ -1,13 +1,14 @@
 import 'package:ditonton/common/constants.dart';
-import 'package:ditonton/common/state_enum.dart';
+import 'package:ditonton/presentation/bloc/tv/now_playing_tv_bloc.dart';
+import 'package:ditonton/presentation/bloc/tv/popular_tv_bloc.dart';
+import 'package:ditonton/presentation/bloc/tv/top_rated_tv_bloc.dart';
 import 'package:ditonton/presentation/pages/tv/now_playing_tvs_page.dart';
 import 'package:ditonton/presentation/pages/tv/popular_tvs_page.dart';
 import 'package:ditonton/presentation/pages/tv/top_rated_tvs_page.dart';
 import 'package:ditonton/presentation/pages/tv/tv_detail_page.dart';
-import 'package:ditonton/presentation/provider/tv/tv_list_provider.dart';
 import 'package:ditonton/presentation/widgets/poster_card_list.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeTvPage extends StatefulWidget {
   const HomeTvPage({Key? key}) : super(key: key);
@@ -20,10 +21,11 @@ class _HomeTvPageState extends State<HomeTvPage> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() => Provider.of<TvListNotifier>(context, listen: false)
-      ..fetchNowPlayingTvs()
-      ..fetchPopularTvs()
-      ..fetchTopRatedTvs());
+    Future.microtask(() {
+      context.read<NowPlayingTvBloc>().add(OnFetchNowPlayingTv());
+      context.read<PopularTvBloc>().add(OnFetchPopularTv());
+      context.read<TopRatedTvBloc>().add(OnFetchTopRatedTv());
+    });
   }
 
   @override
@@ -37,14 +39,14 @@ class _HomeTvPageState extends State<HomeTvPage> {
             onTap: () =>
                 Navigator.pushNamed(context, NowPlayingTvsPage.ROUTE_NAME),
           ),
-          Consumer<TvListNotifier>(builder: (context, data, child) {
-            final state = data.nowPlayingState;
-            if (state == RequestState.Loading) {
+          BlocBuilder<NowPlayingTvBloc, NowPlayingTvState>(
+              builder: (context, state) {
+            if (state is NowPlayingTvLoading) {
               return Center(
                 child: CircularProgressIndicator(),
               );
-            } else if (state == RequestState.Loaded) {
-              List<PosterCardData> posterCards = data.nowPlayingTvs
+            } else if (state is NowPlayingTvHasData) {
+              List<PosterCardData> posterCards = state.result
                   .map((e) => PosterCardData(e.posterPath))
                   .toList();
               return PosterCardList(
@@ -53,7 +55,7 @@ class _HomeTvPageState extends State<HomeTvPage> {
                     Navigator.pushNamed(
                       context,
                       TvDetailPage.ROUTE_NAME,
-                      arguments: data.nowPlayingTvs[index].id,
+                      arguments: state.result[index].id,
                     );
                   });
             } else {
@@ -65,14 +67,13 @@ class _HomeTvPageState extends State<HomeTvPage> {
             onTap: () =>
                 Navigator.pushNamed(context, PopularTvsPage.ROUTE_NAME),
           ),
-          Consumer<TvListNotifier>(builder: (context, data, child) {
-            final state = data.popularTvState;
-            if (state == RequestState.Loading) {
+          BlocBuilder<PopularTvBloc, PopularTvState>(builder: (context, state) {
+            if (state is PopularTvLoading) {
               return Center(
                 child: CircularProgressIndicator(),
               );
-            } else if (state == RequestState.Loaded) {
-              List<PosterCardData> posterCards = data.popularTvs
+            } else if (state is PopularTvHasData) {
+              List<PosterCardData> posterCards = state.result
                   .map((e) => PosterCardData(e.posterPath ?? ""))
                   .toList();
               return PosterCardList(
@@ -81,7 +82,7 @@ class _HomeTvPageState extends State<HomeTvPage> {
                     Navigator.pushNamed(
                       context,
                       TvDetailPage.ROUTE_NAME,
-                      arguments: data.popularTvs[index].id,
+                      arguments: state.result[index].id,
                     );
                   });
             } else {
@@ -93,14 +94,14 @@ class _HomeTvPageState extends State<HomeTvPage> {
             onTap: () =>
                 Navigator.pushNamed(context, TopRatedTvsPage.ROUTE_NAME),
           ),
-          Consumer<TvListNotifier>(builder: (context, data, child) {
-            final state = data.topRatedTvsState;
-            if (state == RequestState.Loading) {
+          BlocBuilder<TopRatedTvBloc, TopRatedTvState>(
+              builder: (context, state) {
+            if (state is TopRatedTvLoading) {
               return Center(
                 child: CircularProgressIndicator(),
               );
-            } else if (state == RequestState.Loaded) {
-              List<PosterCardData> posterCards = data.topRatedTvs
+            } else if (state is TopRatedTvHasData) {
+              List<PosterCardData> posterCards = state.result
                   .map((e) => PosterCardData(e.posterPath ?? ""))
                   .toList();
               return PosterCardList(
@@ -109,7 +110,7 @@ class _HomeTvPageState extends State<HomeTvPage> {
                     Navigator.pushNamed(
                       context,
                       TvDetailPage.ROUTE_NAME,
-                      arguments: data.topRatedTvs[index].id,
+                      arguments: state.result[index].id,
                     );
                   });
             } else {

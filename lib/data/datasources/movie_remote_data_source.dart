@@ -17,7 +17,6 @@ abstract class MovieRemoteDataSource {
 }
 
 class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
-
   final http.Client client;
 
   MovieRemoteDataSourceImpl({required this.client});

@@ -1,13 +1,9 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:ditonton/common/state_enum.dart';
-import 'package:ditonton/domain/entities/movie.dart';
 import 'package:ditonton/presentation/bloc/movie/top_rated_movie_bloc.dart';
 import 'package:ditonton/presentation/pages/movie/top_rated_movies_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
-import 'package:provider/provider.dart';
 
 class MockTopRatedMovieBloc
     extends MockBloc<TopRatedMovieEvent, TopRatedMovieState>

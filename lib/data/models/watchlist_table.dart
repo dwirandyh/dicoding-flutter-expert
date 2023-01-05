@@ -8,29 +8,26 @@ class WatchListTable extends Equatable {
   final String? overview;
   final String type;
 
-  WatchListTable({
-    required this.id,
-    required this.title,
-    required this.posterPath,
-    required this.overview,
-    required this.type
-  });
+  WatchListTable(
+      {required this.id,
+      required this.title,
+      required this.posterPath,
+      required this.overview,
+      required this.type});
 
   factory WatchListTable.fromEntity(Watchlist watchlist) => WatchListTable(
-        id: watchlist.id,
-        title: watchlist.title,
-        posterPath: watchlist.posterPath,
-        overview: watchlist.overview,
-        type: watchlist.type == WatchListType.tv ? "tv" : "movie"
-      );
+      id: watchlist.id,
+      title: watchlist.title,
+      posterPath: watchlist.posterPath,
+      overview: watchlist.overview,
+      type: watchlist.type == WatchListType.tv ? "tv" : "movie");
 
   factory WatchListTable.fromMap(Map<String, dynamic> map) => WatchListTable(
-        id: map['id'],
-        title: map['title'],
-        posterPath: map['posterPath'],
-        overview: map['overview'],
-        type: map['type']
-      );
+      id: map['id'],
+      title: map['title'],
+      posterPath: map['posterPath'],
+      overview: map['overview'],
+      type: map['type']);
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -41,12 +38,11 @@ class WatchListTable extends Equatable {
       };
 
   Watchlist toEntity() => Watchlist(
-        id: id,
-        overview: overview,
-        posterPath: posterPath,
-        title: title,
-        type: type == "tv" ? WatchListType.tv : WatchListType.movie
-      );
+      id: id,
+      overview: overview,
+      posterPath: posterPath,
+      title: title,
+      type: type == "tv" ? WatchListType.tv : WatchListType.movie);
 
   @override
   // TODO: implement props

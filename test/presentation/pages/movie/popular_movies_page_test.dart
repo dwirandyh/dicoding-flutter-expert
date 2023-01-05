@@ -1,16 +1,10 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:ditonton/common/state_enum.dart';
-import 'package:ditonton/domain/entities/movie.dart';
 import 'package:ditonton/presentation/bloc/movie/popular_movie_bloc.dart';
 import 'package:ditonton/presentation/pages/movie/popular_movies_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
-import 'package:provider/provider.dart';
 
-import '../tv/popular_tv_page_test.dart';
 
 class MockPopularMovieBloc
     extends MockBloc<PopularMovieEvent, PopularMovieState>
