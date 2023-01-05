@@ -1,9 +1,9 @@
+import 'package:core/common/feature_page_route.dart';
 import 'package:ditonton/presentation/pages/about_page.dart';
-import 'package:ditonton/presentation/pages/movie/home_movie_page.dart';
-import 'package:ditonton/presentation/pages/tv/home_tv_page.dart';
-import 'package:ditonton/presentation/pages/movie/search_movie_page.dart';
-import 'package:ditonton/presentation/pages/tv/search_tv_page.dart';
-import 'package:ditonton/presentation/pages/watchlist_movies_page.dart';
+import 'package:movie/presentation/pages/movie/home_movie_page.dart';
+import 'package:tv/presentation/pages/tv/home_tv_page.dart';
+import 'package:movie/presentation/pages/movie/search_movie_page.dart';
+import 'package:tv/presentation/pages/tv/search_tv_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> {
               leading: Icon(Icons.save_alt),
               title: Text('Watchlist'),
               onTap: () {
-                Navigator.pushNamed(context, WatchlistMoviesPage.ROUTE_NAME);
+                Navigator.pushNamed(context, FeaturePageRoute.watchlistPage);
               },
             ),
             ListTile(
