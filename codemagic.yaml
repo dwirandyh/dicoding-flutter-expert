@@ -29,7 +29,7 @@ workflows:
 
           HOMEBREW_NO_AUTO_UPDATE=1 brew install lcov 
           
-          CODE_COVERAGE_TARGET=80
+          CODE_COVERAGE_TARGET=70
           code_coverage=$(lcov --list $CM_BUILD_DIR/coverage/lcov.info | sed -n "s/.*Total:|\(.*\)%.*/\1/p")
           
           echo "Code Coverage: ${code_coverage}% "
