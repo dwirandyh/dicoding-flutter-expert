@@ -1,11 +1,11 @@
 part of 'watchlist_status_bloc.dart';
 
 class WatchlistStatusState extends Equatable {
-  bool isExists;
-  bool isSuccess;
-  String? additionalMessage;
+  final bool isExists;
+  final bool isSuccess;
+  final String? additionalMessage;
 
-  WatchlistStatusState({
+  const WatchlistStatusState({
     required this.isExists,
     required this.isSuccess,
     this.additionalMessage,

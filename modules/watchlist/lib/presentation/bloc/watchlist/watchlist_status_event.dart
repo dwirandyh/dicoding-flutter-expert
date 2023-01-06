@@ -1,6 +1,5 @@
 part of 'watchlist_status_bloc.dart';
 
-@immutable
 abstract class WatchlistStatusEvent extends Equatable {}
 
 class OnGetWatchlistStatus extends WatchlistStatusEvent {

@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:watchlist/domain/entities/watchlist.dart';
 import 'package:watchlist/domain/usecases/get_watchlist.dart';
 import 'package:equatable/equatable.dart';

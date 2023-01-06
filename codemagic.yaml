@@ -1,6 +1,9 @@
 workflows:
   flutter-workflow:
     name: Flutter Workflow
+    triggering:
+      events:
+        - push
     max_build_duration: 120
     environment:
       flutter: stable
@@ -14,7 +17,6 @@ workflows:
       - name: Flutter analyze
         script: |
           flutter analyze
-        ignore_failure: true
       - name: Flutter unit tests
         script: |
           cd ./modules/core && flutter test && \
