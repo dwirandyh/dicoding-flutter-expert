@@ -38,7 +38,7 @@ workflows:
             then { echo "code coverage is less than expected" && exit 1; }
           fi  
     
-        test_report: $CM_BUILD_DIR/coverage/lcov.info
+        test_report: ./coverage/lcov.info
       - name: Codecov upload
         script: | 
           curl -Os https://uploader.codecov.io/latest/macos/codecov
