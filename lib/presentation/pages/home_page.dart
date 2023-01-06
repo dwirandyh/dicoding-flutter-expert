@@ -23,6 +23,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: Drawer(
+        key: Key('home.drawer.drawer-menu'),
         child: Column(
           children: [
             UserAccountsDrawerHeader(
@@ -73,6 +74,7 @@ class _HomePageState extends State<HomePage> {
         title: Text('Ditonton'),
         actions: [
           IconButton(
+            key: Key('home.button.search-button'),
             onPressed: () {
               switch (selectedMenuIndex) {
                 case 0:

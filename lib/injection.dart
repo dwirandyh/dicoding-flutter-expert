@@ -112,7 +112,6 @@ void init() {
   locator.registerFactory(
     () => TvDetailBloc(
       getTvDetail: locator(),
-      getTvRecommendations: locator(),
     ),
   );
 

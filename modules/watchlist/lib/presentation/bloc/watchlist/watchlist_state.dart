@@ -2,11 +2,6 @@ part of 'watchlist_bloc.dart';
 
 abstract class WatchlistState extends Equatable {}
 
-class WatchlistInitial extends WatchlistState {
-  @override
-  List<Object?> get props => [];
-}
-
 class WatchlistLoading extends WatchlistState {
   @override
   List<Object?> get props => [];

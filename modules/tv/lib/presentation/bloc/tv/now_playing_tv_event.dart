@@ -1,10 +1,7 @@
 part of 'now_playing_tv_bloc.dart';
 
-abstract class NowPlayingTvEvent extends Equatable {
+abstract class NowPlayingTvEvent {
   const NowPlayingTvEvent();
 }
 
-class OnFetchNowPlayingTv extends NowPlayingTvEvent {
-  @override
-  List<Object?> get props => [];
-}
+class OnFetchNowPlayingTv extends NowPlayingTvEvent {}

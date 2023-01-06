@@ -11,7 +11,7 @@ class WatchlistBloc extends Bloc<WatchlistEvent, WatchlistState> {
   final GetWatchlistMovies getWatchlistMovies;
 
   WatchlistBloc({required this.getWatchlistMovies})
-      : super(WatchlistInitial()) {
+      : super(WatchlistLoading()) {
     on<OnFetchWatchlist>(_onFetchWatchlist);
   }
 

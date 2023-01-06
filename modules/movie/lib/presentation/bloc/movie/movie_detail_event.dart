@@ -1,6 +1,6 @@
 part of 'movie_detail_bloc.dart';
 
-abstract class MovieDetailEvent extends Equatable {
+abstract class MovieDetailEvent {
   const MovieDetailEvent();
 }
 
@@ -8,7 +8,4 @@ class OnFetchMovieDetail extends MovieDetailEvent {
   final int id;
 
   const OnFetchMovieDetail(this.id);
-
-  @override
-  List<Object?> get props => [];
 }

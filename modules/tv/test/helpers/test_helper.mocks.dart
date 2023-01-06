@@ -9,10 +9,10 @@ import 'dart:typed_data' as _i21;
 
 import 'package:core/common/failure.dart' as _i8;
 import 'package:core/db/database_helper.dart' as _i17;
+import 'package:core/network/ssl_pinning.dart' as _i19;
 import 'package:dartz/dartz.dart' as _i2;
+import 'package:http/http.dart' as _i5;
 import 'package:http/io_client.dart' as _i4;
-import 'package:http/src/base_request.dart' as _i19;
-import 'package:http/src/response.dart' as _i5;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:sqflite/sqflite.dart' as _i18;
 import 'package:tv/data/datasources/tv_remote_data_source.dart' as _i13;
@@ -423,6 +423,15 @@ class MockDatabaseHelper extends _i1.Mock implements _i17.DatabaseHelper {
       ) as _i7.Future<List<Map<String, dynamic>>>);
 }
 
+/// A class which mocks [SSLPinning].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockSSLPinning extends _i1.Mock implements _i19.SSLPinning {
+  MockSSLPinning() {
+    _i1.throwOnMissingStub(this);
+  }
+}
+
 /// A class which mocks [IOClient].
 ///
 /// See the documentation for Mockito's code generation for more information.
@@ -432,7 +441,7 @@ class MockHttpClient extends _i1.Mock implements _i4.IOClient {
   }
 
   @override
-  _i7.Future<_i4.IOStreamedResponse> send(_i19.BaseRequest? request) =>
+  _i7.Future<_i4.IOStreamedResponse> send(_i5.BaseRequest? request) =>
       (super.noSuchMethod(
         Invocation.method(
           #send,
