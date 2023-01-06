@@ -23,17 +23,14 @@ workflows:
       - name: Flutter analyze
         script: |
           flutter analyze
-      - name: Flutter unit tests
+      - name: Run unit test and code coverage
         script: |
           chmod +x ./test.sh && ./test.sh
-      - name: Create coverage report
-        script: |
+
+          cp -i ./coverage/lcov.info ./coverage/lcov.txt
+
           HOMEBREW_NO_AUTO_UPDATE=1 brew install lcov 
           
-          mkdir -p test-results
-          mv -i $CM_BUILD_DIR/coverage/lcov.info test-result/flutter.json
-
-
           CODE_COVERAGE_TARGET=80
           code_coverage=$(lcov --list $CM_BUILD_DIR/coverage/lcov.info | sed -n "s/.*Total:|\(.*\)%.*/\1/p")
           
@@ -42,7 +39,7 @@ workflows:
             then { echo "code coverage is less than expected" && exit 1; }
           fi  
     
-        test_report: test-results/flutter.json
+        test_report: ./coverage/lcov.txt
       - name: Codecov upload
         script: | 
           curl -Os https://uploader.codecov.io/latest/macos/codecov
