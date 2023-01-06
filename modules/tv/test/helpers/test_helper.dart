@@ -1,10 +1,11 @@
 import 'package:core/db/database_helper.dart';
+import 'package:core/network/ssl_pinning.dart';
 import 'package:tv/data/datasources/tv_remote_data_source.dart';
 import 'package:watchlist/data/datasources/watchlist_local_data_source.dart';
 import 'package:tv/domain/repositories/tv_repository.dart';
 import 'package:watchlist/domain/repositories/watchlist_repository.dart';
 import 'package:mockito/annotations.dart';
-import 'package:http/http.dart' as http;
+import 'package:http/io_client.dart';
 
 @GenerateMocks([
   TvRepository,
@@ -12,7 +13,8 @@ import 'package:http/http.dart' as http;
   TvRemoteDataSource,
   WatchlistDataSource,
   DatabaseHelper,
+  SSLPinning,
 ], customMocks: [
-  MockSpec<http.Client>(as: #MockHttpClient)
+  MockSpec<IOClient>(as: #MockHttpClient)
 ])
 void main() {}
