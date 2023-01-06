@@ -30,6 +30,10 @@ workflows:
         script: |
           HOMEBREW_NO_AUTO_UPDATE=1 brew install lcov 
           
+          mkdir -p test-results
+          mv -i $CM_BUILD_DIR/coverage/lcov.info test-result/flutter.json
+
+
           CODE_COVERAGE_TARGET=80
           code_coverage=$(lcov --list $CM_BUILD_DIR/coverage/lcov.info | sed -n "s/.*Total:|\(.*\)%.*/\1/p")
           
@@ -38,7 +42,7 @@ workflows:
             then { echo "code coverage is less than expected" && exit 1; }
           fi  
     
-        test_report: coverage/lcov.info
+        test_report: test-results/flutter.json
       - name: Codecov upload
         script: | 
           curl -Os https://uploader.codecov.io/latest/macos/codecov
