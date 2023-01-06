@@ -1,14 +1,8 @@
-# a199-flutter-expert-project
+# Flutter Developer Expert
 
-Repository ini merupakan starter project submission kelas Flutter Expert Dicoding Indonesia.
+Repository ini merupakan project submission kelas Flutter Expert Dicoding Indonesia.
 
 ---
-
-## Tips Submission Awal
-
-Pastikan untuk memeriksa kembali seluruh hasil testing pada submissionmu sebelum dikirimkan. Karena kriteria pada submission ini akan diperiksa setelah seluruh berkas testing berhasil dijalankan.
-
-
 ## Tips Submission Akhir
 
 Jika kamu menerapkan modular pada project, Anda dapat memanfaatkan berkas `test.sh` pada repository ini. Berkas tersebut dapat mempermudah proses testing melalui *terminal* atau *command prompt*. Sebelumnya menjalankan berkas tersebut, ikuti beberapa langkah berikut:
