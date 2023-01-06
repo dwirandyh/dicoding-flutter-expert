@@ -31,6 +31,6 @@ class SearchTvBloc extends Bloc<SearchTvEvent, SearchTvState> {
 
   Future<void> _onSearchTvInitState(
       OnSearchTvInitState event, Emitter<SearchTvState> emit) async {
-    emit(SearchTvHasData([]));
+    emit(const SearchTvHasData([]));
   }
 }

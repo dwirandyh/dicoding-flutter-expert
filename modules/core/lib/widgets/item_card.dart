@@ -15,7 +15,7 @@ class ItemCard extends StatelessWidget {
   final ItemData item;
   final Function? onTap;
 
-  ItemCard({required this.item, this.onTap});
+  const ItemCard({required this.item, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,7 @@ class ItemCard extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       style: kHeading6,
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     Text(
                       item.overview ?? '-',
                       maxLines: 2,
@@ -73,24 +73,24 @@ class ItemCard extends StatelessWidget {
   Widget _buildThumbnail() {
     if (item.posterPath != null) {
       return ClipRRect(
+        borderRadius: const BorderRadius.all(Radius.circular(8)),
         child: CachedNetworkImage(
           imageUrl: '$BASE_IMAGE_URL${item.posterPath}',
           width: 80,
-          placeholder: (context, url) => Center(
+          placeholder: (context, url) => const Center(
             child: CircularProgressIndicator(),
           ),
-          errorWidget: (context, url, error) => Icon(Icons.error),
+          errorWidget: (context, url, error) => const Icon(Icons.error),
         ),
-        borderRadius: BorderRadius.all(Radius.circular(8)),
       );
     } else {
       return ClipRRect(
+        borderRadius: const BorderRadius.all(Radius.circular(8)),
         child: Container(
             color: Colors.grey,
             height: 120,
             width: 80,
-            child: Icon(Icons.error)),
-        borderRadius: BorderRadius.all(Radius.circular(8)),
+            child: const Icon(Icons.error)),
       );
     }
   }

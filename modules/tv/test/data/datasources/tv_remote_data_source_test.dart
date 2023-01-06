@@ -23,7 +23,7 @@ void main() {
   });
 
   group('Get Now Playing Tv', () {
-    final jsonFile = "dummy_data/tv_on_the_air.json";
+    const jsonFile = "dummy_data/tv_on_the_air.json";
     final tvList = TvResponse.fromJson(json.decode(readJson(jsonFile))).tvList;
 
     final uri = Uri.parse('$BASE_URL/tv/on_the_air?$API_KEY');
@@ -53,7 +53,7 @@ void main() {
   });
 
   group('Get Popular Tv', () {
-    final jsonFile = "dummy_data/tv_popular.json";
+    const jsonFile = "dummy_data/tv_popular.json";
     final tvList = TvResponse.fromJson(json.decode(readJson(jsonFile))).tvList;
 
     final uri = Uri.parse('$BASE_URL/tv/popular?$API_KEY');
@@ -83,7 +83,7 @@ void main() {
   });
 
   group('Get Top Rated Tv', () {
-    final jsonFile = "dummy_data/tv_top_rated.json";
+    const jsonFile = "dummy_data/tv_top_rated.json";
     final tvList = TvResponse.fromJson(json.decode(readJson(jsonFile))).tvList;
 
     final uri = Uri.parse('$BASE_URL/tv/top_rated?$API_KEY');
@@ -113,10 +113,10 @@ void main() {
   });
 
   group('Get Top Rated Tv', () {
-    final jsonFile = "dummy_data/tv_search.json";
+    const jsonFile = "dummy_data/tv_search.json";
     final tvList = TvResponse.fromJson(json.decode(readJson(jsonFile))).tvList;
 
-    final query = "dummy";
+    const query = "dummy";
     final uri = Uri.parse('$BASE_URL/search/tv?$API_KEY&query=$query');
 
     test('should return list tv when response code is 200', () async {
@@ -144,10 +144,10 @@ void main() {
   });
 
   group('Get Recommendation Tv', () {
-    final jsonFile = "dummy_data/tv_recommendation.json";
+    const jsonFile = "dummy_data/tv_recommendation.json";
     final tvList = TvResponse.fromJson(json.decode(readJson(jsonFile))).tvList;
 
-    final id = 1;
+    const id = 1;
     final uri = Uri.parse('$BASE_URL/tv/$id/recommendations?$API_KEY');
 
     test('should return list tv when response code is 200', () async {
@@ -175,10 +175,10 @@ void main() {
   });
 
   group('Get Tv Detail', () {
-    final jsonFile = "dummy_data/tv_detail.json";
+    const jsonFile = "dummy_data/tv_detail.json";
     final tvDetail = TvDetailModel.fromJson(json.decode(readJson(jsonFile)));
 
-    final id = 1;
+    const id = 1;
     final uri = Uri.parse('$BASE_URL/tv/$id?$API_KEY');
 
     test('should return tv detail when response code is 200', () async {

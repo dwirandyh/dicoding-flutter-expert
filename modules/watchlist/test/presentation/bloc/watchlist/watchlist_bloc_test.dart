@@ -24,11 +24,11 @@ void main() {
       'Should emit [Loading, HasData] when data is gotten successful',
       build: () {
         when(mockGetWatchlistMovies.execute())
-            .thenAnswer((_) async => Right([]));
+            .thenAnswer((_) async => const Right([]));
         return nowPlayingTvBloc;
       },
       act: (bloc) => bloc.add(OnFetchWatchlist()),
-      expect: () => [WatchlistLoading(), WatchlistHasData([])],
+      expect: () => [WatchlistLoading(), WatchlistHasData(const [])],
       verify: (bloc) {
         verify(mockGetWatchlistMovies.execute());
       });
@@ -37,7 +37,7 @@ void main() {
       'Should emit [Loading, Error] when data is unsuccessful',
       build: () {
         when(mockGetWatchlistMovies.execute())
-            .thenAnswer((_) async => Left(ServerFailure('Server failure')));
+            .thenAnswer((_) async => const Left(ServerFailure('Server failure')));
         return nowPlayingTvBloc;
       },
       act: (bloc) => bloc.add(OnFetchWatchlist()),

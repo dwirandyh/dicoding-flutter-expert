@@ -24,14 +24,14 @@ class _TopRatedTvsPageState extends State<TopRatedTvsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Top Rated TV'),
+        title: const Text('Top Rated TV'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: BlocBuilder<TopRatedTvBloc, TopRatedTvState>(
           builder: (context, state) {
             if (state is TopRatedTvLoading) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             } else if (state is TopRatedTvHasData) {
@@ -56,7 +56,7 @@ class _TopRatedTvsPageState extends State<TopRatedTvsPage> {
               );
             } else if (state is TopRatedTvError) {
               return Center(
-                key: Key('error_message'),
+                key: const Key('error_message'),
                 child: Text(state.message),
               );
             } else {

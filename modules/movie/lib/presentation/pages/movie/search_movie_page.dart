@@ -20,14 +20,14 @@ class _SearchMoviePageState extends State<SearchMoviePage> {
     super.initState();
 
     Future.microtask(
-        () => context.read<SearchMovieBloc>().add(OnSearchMovieInitState()));
+        () => context.read<SearchMovieBloc>().add(const OnSearchMovieInitState()));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Search Movie'),
+        title: const Text('Search Movie'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -40,14 +40,14 @@ class _SearchMoviePageState extends State<SearchMoviePage> {
                     .read<SearchMovieBloc>()
                     .add(OnSearchMovieQueryChanged(query));
               },
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: 'Search title',
                 prefixIcon: Icon(Icons.search),
                 border: OutlineInputBorder(),
               ),
               textInputAction: TextInputAction.search,
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Text(
               'Search Result',
               style: kHeading6,
@@ -55,7 +55,7 @@ class _SearchMoviePageState extends State<SearchMoviePage> {
             BlocBuilder<SearchMovieBloc, SearchMovieState>(
               builder: (context, state) {
                 if (state is SearchMovieLoading) {
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(),
                   );
                 } else if (state is SearchMovieHasData) {

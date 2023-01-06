@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class Tv extends Equatable {
-  Tv({
+  const Tv({
     required this.backdropPath,
     required this.firstAirDate,
     required this.genreIds,

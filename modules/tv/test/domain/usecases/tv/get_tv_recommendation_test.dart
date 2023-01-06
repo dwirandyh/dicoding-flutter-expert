@@ -17,7 +17,7 @@ void main() {
   });
 
   final tvs = <Tv>[];
-  final id = 1;
+  const id = 1;
 
   test('should get list of tv from repository', () async {
     // arrange

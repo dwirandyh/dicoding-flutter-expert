@@ -42,7 +42,7 @@ class _HomeTvPageState extends State<HomeTvPage> {
           BlocBuilder<NowPlayingTvBloc, NowPlayingTvState>(
               builder: (context, state) {
             if (state is NowPlayingTvLoading) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             } else if (state is NowPlayingTvHasData) {
@@ -59,7 +59,7 @@ class _HomeTvPageState extends State<HomeTvPage> {
                     );
                   });
             } else {
-              return Text('Failed');
+              return const Text('Failed');
             }
           }),
           _buildSubHeading(
@@ -69,7 +69,7 @@ class _HomeTvPageState extends State<HomeTvPage> {
           ),
           BlocBuilder<PopularTvBloc, PopularTvState>(builder: (context, state) {
             if (state is PopularTvLoading) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             } else if (state is PopularTvHasData) {
@@ -86,7 +86,7 @@ class _HomeTvPageState extends State<HomeTvPage> {
                     );
                   });
             } else {
-              return Text('Failed');
+              return const Text('Failed');
             }
           }),
           _buildSubHeading(
@@ -97,7 +97,7 @@ class _HomeTvPageState extends State<HomeTvPage> {
           BlocBuilder<TopRatedTvBloc, TopRatedTvState>(
               builder: (context, state) {
             if (state is TopRatedTvLoading) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             } else if (state is TopRatedTvHasData) {
@@ -114,7 +114,7 @@ class _HomeTvPageState extends State<HomeTvPage> {
                     );
                   });
             } else {
-              return Text('Failed');
+              return const Text('Failed');
             }
           }),
         ],
@@ -140,7 +140,7 @@ class _HomeTvPageState extends State<HomeTvPage> {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
-              children: [Text('See More'), Icon(Icons.arrow_forward_ios)],
+              children: const [Text('See More'), Icon(Icons.arrow_forward_ios)],
             ),
           ),
         ),

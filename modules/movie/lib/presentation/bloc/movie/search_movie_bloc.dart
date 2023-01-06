@@ -31,6 +31,6 @@ class SearchMovieBloc extends Bloc<SearchMovieEvent, SearchMovieState> {
 
   Future<void> _onSearchMovieInitState(
       OnSearchMovieInitState event, Emitter<SearchMovieState> emit) async {
-    emit(SearchMovieHasData([]));
+    emit(const SearchMovieHasData([]));
   }
 }

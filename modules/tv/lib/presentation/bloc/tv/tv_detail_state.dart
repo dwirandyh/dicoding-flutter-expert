@@ -12,7 +12,7 @@ class TvDetailLoading extends TvDetailState {
 class TvDetailHasData extends TvDetailState {
   final TvDetail detail;
 
-  TvDetailHasData(this.detail);
+  const TvDetailHasData(this.detail);
 
   @override
   List<Object?> get props => [detail];
@@ -21,7 +21,7 @@ class TvDetailHasData extends TvDetailState {
 class TvDetailError extends TvDetailState {
   final String message;
 
-  TvDetailError(this.message);
+  const TvDetailError(this.message);
 
   @override
   List<Object?> get props => [];

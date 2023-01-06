@@ -49,7 +49,7 @@ void main() {
     whenListen(
       mockMovieDetailBloc,
       Stream.fromIterable([
-        MovieDetailHasData(testMovieDetail),
+        const MovieDetailHasData(testMovieDetail),
       ]),
       initialState: MovieDetailLoading(),
     );
@@ -57,7 +57,7 @@ void main() {
     whenListen(
       mockMovieRecommendationBloc,
       Stream.fromIterable([
-        MovieRecommendationHasData([]),
+        MovieRecommendationHasData(const []),
       ]),
       initialState: MovieRecommendationLoading(),
     );
@@ -73,7 +73,7 @@ void main() {
 
     final watchlistButtonIcon = find.byIcon(Icons.add);
 
-    await tester.pumpWidget(_makeTestableWidget(MovieDetailPage(id: 1)));
+    await tester.pumpWidget(_makeTestableWidget(const MovieDetailPage(id: 1)));
     await tester.pump(Duration.zero);
 
     expect(watchlistButtonIcon, findsOneWidget);
@@ -85,7 +85,7 @@ void main() {
     whenListen(
       mockMovieDetailBloc,
       Stream.fromIterable([
-        MovieDetailHasData(testMovieDetail),
+        const MovieDetailHasData(testMovieDetail),
       ]),
       initialState: MovieDetailLoading(),
     );
@@ -93,7 +93,7 @@ void main() {
     whenListen(
       mockMovieRecommendationBloc,
       Stream.fromIterable([
-        MovieRecommendationHasData([]),
+        MovieRecommendationHasData(const []),
       ]),
       initialState: MovieRecommendationLoading(),
     );
@@ -109,7 +109,7 @@ void main() {
 
     final watchlistButtonIcon = find.byIcon(Icons.check);
 
-    await tester.pumpWidget(_makeTestableWidget(MovieDetailPage(id: 1)));
+    await tester.pumpWidget(_makeTestableWidget(const MovieDetailPage(id: 1)));
     await tester.pump(Duration.zero);
 
     expect(watchlistButtonIcon, findsOneWidget);
@@ -124,7 +124,7 @@ void main() {
     );
 
     final loadingIndicatorFinder = find.byType(CircularProgressIndicator);
-    await tester.pumpWidget(_makeTestableWidget(MovieDetailPage(id: 1)));
+    await tester.pumpWidget(_makeTestableWidget(const MovieDetailPage(id: 1)));
 
     expect(loadingIndicatorFinder, findsOneWidget);
   });
@@ -134,13 +134,13 @@ void main() {
     whenListen(
       mockMovieDetailBloc,
       Stream.fromIterable([
-        MovieDetailError("Failed to load data"),
+        const MovieDetailError("Failed to load data"),
       ]),
       initialState: MovieDetailLoading(),
     );
 
     final errorMessageFinder = find.text('Failed to load data');
-    await tester.pumpWidget(_makeTestableWidget(MovieDetailPage(id: 1)));
+    await tester.pumpWidget(_makeTestableWidget(const MovieDetailPage(id: 1)));
     await tester.pump(Duration.zero);
 
     expect(errorMessageFinder, findsOneWidget);
@@ -151,7 +151,7 @@ void main() {
     whenListen(
       mockMovieDetailBloc,
       Stream.fromIterable([
-        MovieDetailHasData(testMovieDetail),
+        const MovieDetailHasData(testMovieDetail),
       ]),
       initialState: MovieDetailLoading(),
     );
@@ -173,7 +173,7 @@ void main() {
     );
 
     final recommendationListFinder = find.byType(ListView);
-    await tester.pumpWidget(_makeTestableWidget(MovieDetailPage(id: 1)));
+    await tester.pumpWidget(_makeTestableWidget(const MovieDetailPage(id: 1)));
     await tester.pump(Duration.zero);
 
     expect(recommendationListFinder, findsOneWidget);

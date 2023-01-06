@@ -24,14 +24,14 @@ class _NowPlayingTvsPageState extends State<NowPlayingTvsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Now Playings TV'),
+        title: const Text('Now Playings TV'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: BlocBuilder<NowPlayingTvBloc, NowPlayingTvState>(
           builder: (context, state) {
             if (state is NowPlayingTvLoading) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             } else if (state is NowPlayingTvHasData) {
@@ -56,7 +56,7 @@ class _NowPlayingTvsPageState extends State<NowPlayingTvsPage> {
               );
             } else if (state is NowPlayingTvError) {
               return Center(
-                key: Key('error_message'),
+                key: const Key('error_message'),
                 child: Text(state.message),
               );
             } else {

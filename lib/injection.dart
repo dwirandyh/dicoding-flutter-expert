@@ -39,7 +39,6 @@ import 'package:tv/presentation/bloc/tv/tv_detail_bloc.dart';
 import 'package:tv/presentation/bloc/tv/tv_recommendation_bloc.dart';
 import 'package:watchlist/presentation/bloc/watchlist/watchlist_bloc.dart';
 import 'package:watchlist/presentation/bloc/watchlist/watchlist_status_bloc.dart';
-import 'package:http/http.dart' as http;
 import 'package:get_it/get_it.dart';
 
 final locator = GetIt.instance;

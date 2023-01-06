@@ -19,14 +19,14 @@ class _SearchTvPageState extends State<SearchTvPage> {
   void initState() {
     super.initState();
     Future.microtask(
-        () => context.read<SearchTvBloc>().add(OnSearchTvInitState()));
+        () => context.read<SearchTvBloc>().add(const OnSearchTvInitState()));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Search TV Series'),
+        title: const Text('Search TV Series'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -37,14 +37,14 @@ class _SearchTvPageState extends State<SearchTvPage> {
               onSubmitted: (query) {
                 context.read<SearchTvBloc>().add(OnSearchTvQueryChanged(query));
               },
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: 'Search title',
                 prefixIcon: Icon(Icons.search),
                 border: OutlineInputBorder(),
               ),
               textInputAction: TextInputAction.search,
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Text(
               'Search Result',
               style: kHeading6,
@@ -52,7 +52,7 @@ class _SearchTvPageState extends State<SearchTvPage> {
             BlocBuilder<SearchTvBloc, SearchTvState>(
               builder: (context, state) {
                 if (state is SearchTvLoading) {
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(),
                   );
                 } else if (state is SearchTvHasData) {

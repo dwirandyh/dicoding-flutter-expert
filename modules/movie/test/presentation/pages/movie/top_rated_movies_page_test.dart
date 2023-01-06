@@ -50,7 +50,7 @@ void main() {
     final expectedStates = [
       TopRatedMovieInitial(),
       TopRatedMovieLoading(),
-      TopRatedMovieHasData([]),
+      TopRatedMovieHasData(const []),
     ];
 
     whenListen(mockBloc, Stream.fromIterable(expectedStates),
@@ -75,7 +75,7 @@ void main() {
     whenListen(mockBloc, Stream.fromIterable(expectedStates),
         initialState: TopRatedMovieInitial());
 
-    final textFinder = find.byKey(Key('error_message'));
+    final textFinder = find.byKey(const Key('error_message'));
 
     await tester.pumpWidget(_makeTestableWidget(TopRatedMoviesPage()));
     await tester.pump(Duration.zero);

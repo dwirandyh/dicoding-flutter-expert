@@ -50,8 +50,8 @@ void main() {
     firstAirDate: DateTime(2017, 9, 7, 17, 30),
     id: 12,
     name: "dummy name",
-    genres: [Genre(id: 1, name: "name")],
-    originCountry: ["dummy country"],
+    genres: const [Genre(id: 1, name: "name")],
+    originCountry: const ["dummy country"],
     originalLanguage: "dummy language",
     originalName: "dummy originalName",
     overview: "dummy overview",
@@ -60,10 +60,10 @@ void main() {
     voteAverage: 5,
     voteCount: 20,
     adult: false,
-    episodeRunTime: [],
+    episodeRunTime: const [],
     homepage: "homepage",
     inProduction: true,
-    languages: ["indonesia"],
+    languages: const ["indonesia"],
     lastAirDate: DateTime(2017, 9, 7, 17, 30),
     nextEpisodeToAir: "nextEpisodeToAir",
     numberOfEpisodes: 1,
@@ -85,10 +85,10 @@ void main() {
 
   final testTv = Tv(
       firstAirDate: DateTime(2017, 9, 7, 17, 30),
-      genreIds: [1, 2],
+      genreIds: const [1, 2],
       id: 12,
       name: "dummy name",
-      originCountry: ["dummy country"],
+      originCountry: const ["dummy country"],
       originalLanguage: "dummy language",
       originalName: "dummy originalName",
       overview: "dummy overview",
@@ -130,7 +130,7 @@ void main() {
 
     final watchlistButtonIcon = find.byIcon(Icons.add);
 
-    await tester.pumpWidget(_makeTestableWidget(TvDetailPage(id: 1)));
+    await tester.pumpWidget(_makeTestableWidget(const TvDetailPage(id: 1)));
     await tester.pump(Duration.zero);
 
     expect(watchlistButtonIcon, findsOneWidget);
@@ -166,7 +166,7 @@ void main() {
 
     final watchlistButtonIcon = find.byIcon(Icons.check);
 
-    await tester.pumpWidget(_makeTestableWidget(TvDetailPage(id: 1)));
+    await tester.pumpWidget(_makeTestableWidget(const TvDetailPage(id: 1)));
     await tester.pump(Duration.zero);
 
     expect(watchlistButtonIcon, findsOneWidget);
@@ -181,7 +181,7 @@ void main() {
     );
 
     final loadingIndicatorFinder = find.byType(CircularProgressIndicator);
-    await tester.pumpWidget(_makeTestableWidget(TvDetailPage(id: 1)));
+    await tester.pumpWidget(_makeTestableWidget(const TvDetailPage(id: 1)));
     await tester.pump(Duration.zero);
 
     expect(loadingIndicatorFinder, findsOneWidget);
@@ -192,13 +192,13 @@ void main() {
     whenListen(
       mockTvDetailBloc,
       Stream.fromIterable([
-        TvDetailError("Failed to load data"),
+        const TvDetailError("Failed to load data"),
       ]),
       initialState: TvDetailLoading(),
     );
 
     final errorMessageFinder = find.text('Failed to load data');
-    await tester.pumpWidget(_makeTestableWidget(TvDetailPage(id: 1)));
+    await tester.pumpWidget(_makeTestableWidget(const TvDetailPage(id: 1)));
     await tester.pump(Duration.zero);
 
     expect(errorMessageFinder, findsOneWidget);
@@ -231,8 +231,8 @@ void main() {
     );
 
     final recommendationListFinder =
-        find.byKey(Key('tv-detail-recommendation-listview'));
-    await tester.pumpWidget(_makeTestableWidget(TvDetailPage(id: 1)));
+        find.byKey(const Key('tv-detail-recommendation-listview'));
+    await tester.pumpWidget(_makeTestableWidget(const TvDetailPage(id: 1)));
     await tester.pump(Duration.zero);
 
     expect(recommendationListFinder, findsOneWidget);

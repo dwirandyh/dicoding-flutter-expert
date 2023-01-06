@@ -15,7 +15,7 @@ class TvDetailPage extends StatefulWidget {
   static const ROUTE_NAME = '/tv/detail';
 
   final int id;
-  TvDetailPage({required this.id});
+  const TvDetailPage({required this.id});
 
   @override
   _TvDetailPageState createState() => _TvDetailPageState();
@@ -40,7 +40,7 @@ class _TvDetailPageState extends State<TvDetailPage> {
       body: BlocBuilder<TvDetailBloc, TvDetailState>(
         builder: (context, state) {
           if (state is TvDetailLoading) {
-            return Center(
+            return const Center(
               key: Key('tvdetail-progress-indicator'),
               child: CircularProgressIndicator(),
             );
@@ -63,7 +63,7 @@ class _TvDetailPageState extends State<TvDetailPage> {
 class DetailContent extends StatelessWidget {
   final TvDetail tv;
 
-  DetailContent(this.tv);
+  const DetailContent(this.tv);
 
   @override
   Widget build(BuildContext context) {
@@ -73,17 +73,17 @@ class DetailContent extends StatelessWidget {
         CachedNetworkImage(
           imageUrl: 'https://image.tmdb.org/t/p/w500${tv.posterPath}',
           width: screenWidth,
-          placeholder: (context, url) => Center(
+          placeholder: (context, url) => const Center(
             child: CircularProgressIndicator(),
           ),
-          errorWidget: (context, url, error) => Icon(Icons.error),
+          errorWidget: (context, url, error) => const Icon(Icons.error),
         ),
         Container(
           margin: const EdgeInsets.only(top: 48 + 8),
           child: DraggableScrollableSheet(
             builder: (context, scrollController) {
               return Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: kRichBlack,
                   borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
                 ),
@@ -152,9 +152,9 @@ class DetailContent extends StatelessWidget {
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       state.isExists
-                                          ? Icon(Icons.check)
-                                          : Icon(Icons.add),
-                                      Text('Watchlist'),
+                                          ? const Icon(Icons.check)
+                                          : const Icon(Icons.add),
+                                      const Text('Watchlist'),
                                     ],
                                   ),
                                 );
@@ -171,7 +171,7 @@ class DetailContent extends StatelessWidget {
                                 RatingBarIndicator(
                                   rating: tv.voteAverage / 2,
                                   itemCount: 5,
-                                  itemBuilder: (context, index) => Icon(
+                                  itemBuilder: (context, index) => const Icon(
                                     Icons.star,
                                     color: kMikadoYellow,
                                   ),
@@ -180,7 +180,7 @@ class DetailContent extends StatelessWidget {
                                 Text('${tv.voteAverage}')
                               ],
                             ),
-                            SizedBox(height: 16),
+                            const SizedBox(height: 16),
                             Text(
                               'Overview',
                               style: kHeading6,
@@ -188,10 +188,10 @@ class DetailContent extends StatelessWidget {
                             Text(
                               tv.overview,
                             ),
-                            SizedBox(height: 16),
+                            const SizedBox(height: 16),
                             Text("Seasons", style: kHeading6),
                             _buildSeason(),
-                            SizedBox(height: 16),
+                            const SizedBox(height: 16),
                             Text(
                               'Recommendations',
                               style: kHeading6,
@@ -224,7 +224,7 @@ class DetailContent extends StatelessWidget {
             backgroundColor: kRichBlack,
             foregroundColor: Colors.white,
             child: IconButton(
-              icon: Icon(Icons.arrow_back),
+              icon: const Icon(Icons.arrow_back),
               onPressed: () {
                 Navigator.pop(context);
               },
@@ -239,16 +239,16 @@ class DetailContent extends StatelessWidget {
     return BlocBuilder<TvRecommendationBloc, TvRecommendationState>(
       builder: (context, state) {
         if (state is TvRecommendationLoading) {
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(),
           );
         } else if (state is TvRecommendationError) {
           return Text(state.message);
         } else if (state is TvRecommendationHasData) {
-          return Container(
+          return SizedBox(
             height: 180,
             child: ListView.builder(
-              key: Key('tv-detail-recommendation-listview'),
+              key: const Key('tv-detail-recommendation-listview'),
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 final recommendation = state.result[index];
@@ -270,7 +270,7 @@ class DetailContent extends StatelessWidget {
             ),
           );
         } else {
-          return Text('No recommendation found');
+          return const Text('No recommendation found');
         }
       },
     );
@@ -279,15 +279,15 @@ class DetailContent extends StatelessWidget {
   Widget _buildPosterImage(String? posterPath) {
     if (posterPath != null) {
       return ClipRRect(
-        borderRadius: BorderRadius.all(
+        borderRadius: const BorderRadius.all(
           Radius.circular(8),
         ),
         child: CachedNetworkImage(
           imageUrl: 'https://image.tmdb.org/t/p/w500$posterPath',
-          placeholder: (context, url) => Center(
+          placeholder: (context, url) => const Center(
             child: CircularProgressIndicator(),
           ),
-          errorWidget: (context, url, error) => Icon(Icons.error),
+          errorWidget: (context, url, error) => const Icon(Icons.error),
         ),
       );
     } else {
@@ -297,7 +297,7 @@ class DetailContent extends StatelessWidget {
 
   Widget _buildSeason() {
     if (tv.seasons.isNotEmpty) {
-      return Container(
+      return SizedBox(
         height: 200,
         child: ListView.builder(
             shrinkWrap: true,
@@ -311,7 +311,7 @@ class DetailContent extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _buildSeasonThumbnail(season),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     _buildSeasonInfo(season)
                   ],
                 ),
@@ -319,28 +319,28 @@ class DetailContent extends StatelessWidget {
             }),
       );
     } else {
-      return Text('No season found');
+      return const Text('No season found');
     }
   }
 
   Widget _buildSeasonThumbnail(Season season) {
     if (season.posterPath != null) {
       return ClipRRect(
+        borderRadius: const BorderRadius.all(Radius.circular(8)),
         child: Container(
             color: Colors.grey,
             height: 120,
             width: 80,
-            child: Icon(Icons.error)),
-        borderRadius: BorderRadius.all(Radius.circular(8)),
+            child: const Icon(Icons.error)),
       );
     } else {
       return ClipRRect(
+        borderRadius: const BorderRadius.all(Radius.circular(8)),
         child: Container(
             color: Colors.grey,
             height: 120,
             width: 80,
-            child: Icon(Icons.error)),
-        borderRadius: BorderRadius.all(Radius.circular(8)),
+            child: const Icon(Icons.error)),
       );
     }
   }
@@ -355,7 +355,7 @@ class DetailContent extends StatelessWidget {
   String _showGenres(List<Genre> genres) {
     String result = '';
     for (var genre in genres) {
-      result += genre.name + ', ';
+      result += '${genre.name}, ';
     }
 
     if (result.isEmpty) {

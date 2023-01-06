@@ -1,7 +1,7 @@
 import 'package:watchlist/data/models/watchlist_table.dart';
 import 'package:watchlist/domain/entities/watchlist.dart';
 
-final testWatchlist = Watchlist(
+const testWatchlist = Watchlist(
     id: 1,
     title: 'title',
     posterPath: 'posterPath',
@@ -10,7 +10,7 @@ final testWatchlist = Watchlist(
 
 final testWatchlistArray = [testWatchlist];
 
-final testMovieTable = WatchListTable(
+const testMovieTable = WatchListTable(
     id: 1,
     title: 'title',
     posterPath: 'posterPath',

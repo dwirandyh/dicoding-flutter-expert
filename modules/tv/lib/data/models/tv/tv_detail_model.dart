@@ -11,7 +11,7 @@ import 'package:tv/domain/entities/tv_season.dart';
 import 'package:equatable/equatable.dart';
 
 class TvDetailModel extends Equatable {
-  TvDetailModel({
+  const TvDetailModel({
     required this.adult,
     required this.backdropPath,
     required this.createdBy,
@@ -300,7 +300,7 @@ class LastEpisodeToAir {
 }
 
 class TvSeasonModel extends Equatable {
-  TvSeasonModel({
+  const TvSeasonModel({
     required this.airDate,
     required this.episodeCount,
     required this.id,
@@ -335,7 +335,7 @@ class TvSeasonModel extends Equatable {
       );
 
   Map<String, dynamic> toJson() => {
-        "air_date": "${airDate.toString()}",
+        "air_date": airDate.toString(),
         "episode_count": episodeCount,
         "id": id,
         "name": name,

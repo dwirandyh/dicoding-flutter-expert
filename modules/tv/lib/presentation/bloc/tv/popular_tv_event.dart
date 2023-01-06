@@ -5,5 +5,6 @@ abstract class PopularTvEvent extends Equatable {
 }
 
 class OnFetchPopularTv extends PopularTvEvent {
+  @override
   List<Object?> get props => [];
 }

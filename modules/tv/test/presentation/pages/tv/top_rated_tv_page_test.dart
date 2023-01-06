@@ -48,7 +48,7 @@ void main() {
 
   testWidgets('Page should display when data is loaded', (widgetTester) async {
     // arrange
-    final expectedStates = [TopRatedTvLoading(), TopRatedTvHasData([])];
+    final expectedStates = [TopRatedTvLoading(), TopRatedTvHasData(const [])];
 
     whenListen(mockBloc, Stream.fromIterable(expectedStates),
         initialState: TopRatedTvInitial());
@@ -68,7 +68,7 @@ void main() {
         initialState: TopRatedTvInitial());
 
     // act
-    final errorTextFinder = find.byKey(Key("error_message"));
+    final errorTextFinder = find.byKey(const Key("error_message"));
     await widgetTester.pumpWidget(_makeTestableWidget(TopRatedTvsPage()));
     await widgetTester.pump(Duration.zero);
 

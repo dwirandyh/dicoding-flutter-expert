@@ -22,10 +22,10 @@ void main() {
 
   final testTv = Tv(
       firstAirDate: DateTime(2017, 9, 7, 17, 30),
-      genreIds: [1, 2],
+      genreIds: const [1, 2],
       id: 12,
       name: "dummy name",
-      originCountry: ["dummy country"],
+      originCountry: const ["dummy country"],
       originalLanguage: "dummy language",
       originalName: "dummy originalName",
       overview: "dummy overview",
@@ -53,7 +53,7 @@ void main() {
       'Should emit [Loading, Error] when data is unsuccessful',
       build: () {
         when(mockGetNowPlayingTv.execute())
-            .thenAnswer((_) async => Left(ServerFailure('Server failure')));
+            .thenAnswer((_) async => const Left(ServerFailure('Server failure')));
         return nowPlayingTvBloc;
       },
       act: (bloc) => bloc.add(OnFetchNowPlayingTv()),

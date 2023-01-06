@@ -16,7 +16,7 @@ void main() {
     usecase = SearchTv(mockTvRepository);
   });
 
-  final query = "query";
+  const query = "query";
   final tvs = <Tv>[];
 
   test('should get list of tv from repository', () async {

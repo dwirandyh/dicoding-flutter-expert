@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:equatable/equatable.dart';
 
 class TvCreatedByModel extends Equatable {
-  TvCreatedByModel({
+  const TvCreatedByModel({
     required this.id,
     required this.creditId,
     required this.name,

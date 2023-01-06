@@ -18,14 +18,14 @@ void main() {
     usecase = GetTvDetail(mockTvRepository);
   });
 
-  final id = 1;
+  const id = 1;
   final tvDetail = TvDetail(
     backdropPath: 'dummy backdrop',
     firstAirDate: DateTime(2017, 9, 7, 17, 30),
     id: 12,
     name: "dummy name",
-    genres: [Genre(id: 1, name: "name")],
-    originCountry: ["dummy country"],
+    genres: const [Genre(id: 1, name: "name")],
+    originCountry: const ["dummy country"],
     originalLanguage: "dummy language",
     originalName: "dummy originalName",
     overview: "dummy overview",
@@ -34,10 +34,10 @@ void main() {
     voteAverage: 5,
     voteCount: 20,
     adult: false,
-    episodeRunTime: [],
+    episodeRunTime: const [],
     homepage: "homepage",
     inProduction: true,
-    languages: ["indonesia"],
+    languages: const ["indonesia"],
     lastAirDate: DateTime(2017, 9, 7, 17, 30),
     nextEpisodeToAir: "nextEpisodeToAir",
     numberOfEpisodes: 1,

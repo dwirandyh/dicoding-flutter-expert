@@ -7,7 +7,7 @@ abstract class TvDetailEvent extends Equatable {
 class OnFetchTvDetail extends TvDetailEvent {
   final int id;
 
-  OnFetchTvDetail(this.id);
+  const OnFetchTvDetail(this.id);
 
   @override
   List<Object?> get props => [];

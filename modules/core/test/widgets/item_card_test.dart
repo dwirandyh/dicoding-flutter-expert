@@ -45,7 +45,7 @@ void main() {
         ItemData(title: "title", overview: "overview", posterPath: null);
 
     var isTapped = false;
-    final Function? onTap = (() {
+    final Function onTap = (() {
       isTapped = true;
     });
 

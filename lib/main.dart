@@ -3,7 +3,6 @@ import 'package:core/common/feature_page_route.dart';
 import 'package:core/common/utils.dart';
 import 'package:ditonton/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:movie/presentation/bloc/movie/movie_detail_bloc.dart';
 import 'package:movie/presentation/bloc/movie/movie_recommendation_bloc.dart';
 import 'package:movie/presentation/bloc/movie/now_playing_movie_bloc.dart';

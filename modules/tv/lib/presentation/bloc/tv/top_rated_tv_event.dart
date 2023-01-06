@@ -5,5 +5,6 @@ abstract class TopRatedTvEvent extends Equatable {
 }
 
 class OnFetchTopRatedTv extends TopRatedTvEvent {
+  @override
   List<Object?> get props => [];
 }

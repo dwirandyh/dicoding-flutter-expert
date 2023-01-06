@@ -40,7 +40,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
           BlocBuilder<NowPlayingMovieBloc, NowPlayingMovieState>(
               builder: (context, state) {
             if (state is NowPlayingMovieLoading) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             } else if (state is NowPlayingMovieHasData) {
@@ -57,7 +57,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
                     );
                   });
             } else {
-              return Text('Failed');
+              return const Text('Failed');
             }
           }),
           _buildSubHeading(
@@ -68,7 +68,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
           BlocBuilder<PopularMovieBloc, PopularMovieState>(
               builder: (context, state) {
             if (state is PopularMovieLoading) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             } else if (state is PopularMovieHasData) {
@@ -86,7 +86,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
                 },
               );
             } else {
-              return Text('Failed');
+              return const Text('Failed');
             }
           }),
           _buildSubHeading(
@@ -97,7 +97,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
           BlocBuilder<TopRatedMovieBloc, TopRatedMovieState>(
               builder: (context, state) {
             if (state is TopRatedMovieLoading) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             } else if (state is TopRatedMovieHasData) {
@@ -114,7 +114,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
                     );
                   });
             } else {
-              return Text('Failed');
+              return const Text('Failed');
             }
           }),
         ],
@@ -139,7 +139,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
-              children: [Text('See More'), Icon(Icons.arrow_forward_ios)],
+              children: const [Text('See More'), Icon(Icons.arrow_forward_ios)],
             ),
           ),
         ),

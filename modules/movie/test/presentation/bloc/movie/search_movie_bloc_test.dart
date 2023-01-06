@@ -20,11 +20,11 @@ void main() {
     searchMovieBloc = SearchMovieBloc(searchMovies: mockSearchMovie);
   });
 
-  final query = "query";
+  const query = "query";
   final tMovie = Movie(
     adult: false,
     backdropPath: 'backdropPath',
-    genreIds: [1, 2, 3],
+    genreIds: const [1, 2, 3],
     id: 1,
     originalTitle: 'originalTitle',
     overview: 'overview',
@@ -46,7 +46,7 @@ void main() {
             .thenAnswer((_) async => Right(tMovieList));
         return searchMovieBloc;
       },
-      act: (bloc) => bloc.add(OnSearchMovieQueryChanged(query)),
+      act: (bloc) => bloc.add(const OnSearchMovieQueryChanged(query)),
       expect: () => [SearchMovieLoading(), SearchMovieHasData(tMovieList)],
       verify: (bloc) {
         verify(mockSearchMovie.execute(query));
@@ -56,11 +56,11 @@ void main() {
       'Should emit [Loading, Error] when data is unsuccesfull',
       build: () {
         when(mockSearchMovie.execute(query))
-            .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+            .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
         return searchMovieBloc;
       },
-      act: (bloc) => bloc.add(OnSearchMovieQueryChanged(query)),
-      expect: () => [SearchMovieLoading(), SearchMovieError('Server Failure')],
+      act: (bloc) => bloc.add(const OnSearchMovieQueryChanged(query)),
+      expect: () => [SearchMovieLoading(), const SearchMovieError('Server Failure')],
       verify: (bloc) {
         verify(mockSearchMovie.execute(query));
       });

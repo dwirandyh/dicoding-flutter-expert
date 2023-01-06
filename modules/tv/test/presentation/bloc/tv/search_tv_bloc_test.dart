@@ -20,13 +20,13 @@ void main() {
     searchTvBloc = SearchTvBloc(searchTv: mockSearchTv);
   });
 
-  final query = "query";
+  const query = "query";
   final testTv = Tv(
       firstAirDate: DateTime(2017, 9, 7, 17, 30),
-      genreIds: [1, 2],
+      genreIds: const [1, 2],
       id: 12,
       name: "dummy name",
-      originCountry: ["dummy country"],
+      originCountry: const ["dummy country"],
       originalLanguage: "dummy language",
       originalName: "dummy originalName",
       overview: "dummy overview",
@@ -44,7 +44,7 @@ void main() {
             .thenAnswer((_) async => Right(testTvs));
         return searchTvBloc;
       },
-      act: (bloc) => bloc.add(OnSearchTvQueryChanged(query)),
+      act: (bloc) => bloc.add(const OnSearchTvQueryChanged(query)),
       expect: () => [SearchTvLoading(), SearchTvHasData(testTvs)],
       verify: (bloc) {
         verify(mockSearchTv.execute(query));
@@ -54,11 +54,11 @@ void main() {
       'Should emit [Loading, Error] when data is unsuccesfull',
       build: () {
         when(mockSearchTv.execute(query))
-            .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+            .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
         return searchTvBloc;
       },
-      act: (bloc) => bloc.add(OnSearchTvQueryChanged(query)),
-      expect: () => [SearchTvLoading(), SearchTvError('Server Failure')],
+      act: (bloc) => bloc.add(const OnSearchTvQueryChanged(query)),
+      expect: () => [SearchTvLoading(), const SearchTvError('Server Failure')],
       verify: (bloc) {
         verify(mockSearchTv.execute(query));
       });
