@@ -32,7 +32,7 @@ runTests () {
       if [ -f "test/all_tests.dart" ]; then
         flutter test --coverage test/all_tests.dart || error=true
       else
-        flutter test --coverage || error=true
+        flutter test --coverage --machine >> flutter_coverage.json || error=true
       fi
       if [ -d "coverage" ]; then
         # combine line coverage info from package tests to a common file

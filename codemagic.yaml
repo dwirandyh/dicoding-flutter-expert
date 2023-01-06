@@ -27,8 +27,6 @@ workflows:
         script: |
           chmod +x ./test.sh && ./test.sh
 
-          cp -i ./coverage/lcov.info ./coverage/lcov.txt
-
           HOMEBREW_NO_AUTO_UPDATE=1 brew install lcov 
           
           CODE_COVERAGE_TARGET=80
@@ -39,7 +37,7 @@ workflows:
             then { echo "code coverage is less than expected" && exit 1; }
           fi  
     
-        test_report: ./coverage/lcov.txt
+        test_report: ./flutter_coverage.json
       - name: Codecov upload
         script: | 
           curl -Os https://uploader.codecov.io/latest/macos/codecov
