@@ -1,5 +1,7 @@
 # Flutter Developer Expert
 
+[![Codemagic build status](https://api.codemagic.io/apps/63b78ee48ebf29269f195786/flutter-workflow/status_badge.svg)](https://codemagic.io/apps/<app-id>/<workflow-id>/latest_build)
+
 Repository ini merupakan project submission kelas Flutter Expert Dicoding Indonesia.
 
 ---
