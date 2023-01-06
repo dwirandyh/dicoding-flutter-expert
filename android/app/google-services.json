@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "99208022737",
+    "project_id": "fl-expert",
+    "storage_bucket": "fl-expert.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:99208022737:android:4da065a39b344a8a8b93f0",
+        "android_client_info": {
+          "package_name": "com.dicoding.ditonton"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "99208022737-hm52vhn7q6kl1gs4og9cjqfkq8svrf54.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkGPcf0_FXC5OBhvNPKrqb_6VzG6ruW1Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "99208022737-hm52vhn7q6kl1gs4og9cjqfkq8svrf54.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
