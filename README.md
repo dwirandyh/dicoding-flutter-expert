@@ -1,6 +1,6 @@
 # Flutter Developer Expert
 
-[![Codemagic build status](https://api.codemagic.io/apps/63b78ee48ebf29269f195786/flutter-workflow/status_badge.svg)](https://codemagic.io/apps/<app-id>/<workflow-id>/latest_build)
+[![Codemagic build status](https://api.codemagic.io/apps/63b78ee48ebf29269f195786/flutter-workflow/status_badge.svg)](https://codemagic.io/apps/<app-id>/<workflow-id>/latest_build) [![codecov](https://codecov.io/github/dwirandyh/dicoding-flutter-expert/branch/main/graph/badge.svg?token=1UGn0F5x2Q)](https://codecov.io/github/dwirandyh/dicoding-flutter-expert)
 
 Repository ini merupakan project submission kelas Flutter Expert Dicoding Indonesia.
 
