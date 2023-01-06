@@ -14,10 +14,10 @@ workflows:
       - name: Flutter analyze
         script: |
           flutter analyze
+        ignore_failure: true
       - name: Flutter unit tests
         script: |
           flutter test
-        ignore_failure: true
     artifacts:
       - /tmp/xcodebuild_logs/*.log
       - flutter_drive.log
@@ -27,4 +27,4 @@ workflows:
           - dwirandyherdinanto@gmail.com
         notify:
           success: true
-          failure: false
+          failure: true

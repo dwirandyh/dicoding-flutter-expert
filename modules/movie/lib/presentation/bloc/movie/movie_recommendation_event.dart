@@ -1,6 +1,5 @@
 part of 'movie_recommendation_bloc.dart';
 
-@immutable
 abstract class MovieRecommendationEvent extends Equatable {}
 
 class OnFetchMovieRecommendation extends MovieRecommendationEvent {

@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:watchlist/domain/entities/watchlist.dart';
 import 'package:watchlist/domain/usecases/get_watchlist_status.dart';
 import 'package:watchlist/domain/usecases/remove_watchlist.dart';

@@ -15,7 +15,7 @@ class ItemCard extends StatelessWidget {
   final ItemData item;
   final Function? onTap;
 
-  const ItemCard({required this.item, this.onTap});
+  const ItemCard({super.key, required this.item, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +75,7 @@ class ItemCard extends StatelessWidget {
       return ClipRRect(
         borderRadius: const BorderRadius.all(Radius.circular(8)),
         child: CachedNetworkImage(
-          imageUrl: '$BASE_IMAGE_URL${item.posterPath}',
+          imageUrl: '$baseImageUrl${item.posterPath}',
           width: 80,
           placeholder: (context, url) => const Center(
             child: CircularProgressIndicator(),

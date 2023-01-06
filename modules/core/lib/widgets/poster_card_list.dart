@@ -11,7 +11,7 @@ class PosterCardList extends StatelessWidget {
   final List<PosterCardData> items;
   final Function(int)? onTap;
 
-  const PosterCardList({required this.items, this.onTap});
+  const PosterCardList({super.key, required this.items, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class PosterCardList extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: const BorderRadius.all(Radius.circular(16)),
                 child: CachedNetworkImage(
-                  imageUrl: '$BASE_IMAGE_URL${movie.posterPath}',
+                  imageUrl: '$baseImageUrl${movie.posterPath}',
                   placeholder: (context, url) => const Center(
                     child: CircularProgressIndicator(),
                   ),

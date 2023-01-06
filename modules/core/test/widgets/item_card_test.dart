@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  Widget _makeTestableWidget(Widget body) {
+  Widget makeTestableWidget(Widget body) {
     return MaterialApp(
       home: Material(child: body),
     );
@@ -18,7 +18,7 @@ void main() {
     final titleFinder = find.text(item.title!);
     final overviewFinder = find.text(item.overview!);
     final posterFinder = find.byType(CachedNetworkImage);
-    await widgetTester.pumpWidget(_makeTestableWidget(ItemCard(item: item)));
+    await widgetTester.pumpWidget(makeTestableWidget(ItemCard(item: item)));
 
     expect(titleFinder, findsOneWidget);
     expect(overviewFinder, findsOneWidget);
@@ -33,7 +33,7 @@ void main() {
     final titleFinder = find.text(item.title!);
     final overviewFinder = find.text(item.overview!);
     final posterErrorIconFinder = find.byIcon(Icons.error);
-    await widgetTester.pumpWidget(_makeTestableWidget(ItemCard(item: item)));
+    await widgetTester.pumpWidget(makeTestableWidget(ItemCard(item: item)));
 
     expect(titleFinder, findsOneWidget);
     expect(overviewFinder, findsOneWidget);
@@ -55,7 +55,7 @@ void main() {
     final inkWellFinder = find.byType(InkWell);
 
     await widgetTester
-        .pumpWidget(_makeTestableWidget(ItemCard(item: item, onTap: onTap)));
+        .pumpWidget(makeTestableWidget(ItemCard(item: item, onTap: onTap)));
     await widgetTester.tap(inkWellFinder);
 
     expect(titleFinder, findsOneWidget);

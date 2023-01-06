@@ -26,7 +26,7 @@ void main() {
     const jsonFile = "dummy_data/tv_on_the_air.json";
     final tvList = TvResponse.fromJson(json.decode(readJson(jsonFile))).tvList;
 
-    final uri = Uri.parse('$BASE_URL/tv/on_the_air?$API_KEY');
+    final uri = Uri.parse('$baseUrl/tv/on_the_air?$apiKey');
 
     test('should return list tv when response code is 200', () async {
       // arrange
@@ -56,7 +56,7 @@ void main() {
     const jsonFile = "dummy_data/tv_popular.json";
     final tvList = TvResponse.fromJson(json.decode(readJson(jsonFile))).tvList;
 
-    final uri = Uri.parse('$BASE_URL/tv/popular?$API_KEY');
+    final uri = Uri.parse('$baseUrl/tv/popular?$apiKey');
 
     test('should return list tv when response code is 200', () async {
       // arrange
@@ -86,7 +86,7 @@ void main() {
     const jsonFile = "dummy_data/tv_top_rated.json";
     final tvList = TvResponse.fromJson(json.decode(readJson(jsonFile))).tvList;
 
-    final uri = Uri.parse('$BASE_URL/tv/top_rated?$API_KEY');
+    final uri = Uri.parse('$baseUrl/tv/top_rated?$apiKey');
 
     test('should return list tv when response code is 200', () async {
       // arrange
@@ -117,7 +117,7 @@ void main() {
     final tvList = TvResponse.fromJson(json.decode(readJson(jsonFile))).tvList;
 
     const query = "dummy";
-    final uri = Uri.parse('$BASE_URL/search/tv?$API_KEY&query=$query');
+    final uri = Uri.parse('$baseUrl/search/tv?$apiKey&query=$query');
 
     test('should return list tv when response code is 200', () async {
       // arrange
@@ -148,7 +148,7 @@ void main() {
     final tvList = TvResponse.fromJson(json.decode(readJson(jsonFile))).tvList;
 
     const id = 1;
-    final uri = Uri.parse('$BASE_URL/tv/$id/recommendations?$API_KEY');
+    final uri = Uri.parse('$baseUrl/tv/$id/recommendations?$apiKey');
 
     test('should return list tv when response code is 200', () async {
       // arrange
@@ -179,7 +179,7 @@ void main() {
     final tvDetail = TvDetailModel.fromJson(json.decode(readJson(jsonFile)));
 
     const id = 1;
-    final uri = Uri.parse('$BASE_URL/tv/$id?$API_KEY');
+    final uri = Uri.parse('$baseUrl/tv/$id?$apiKey');
 
     test('should return tv detail when response code is 200', () async {
       // arrange

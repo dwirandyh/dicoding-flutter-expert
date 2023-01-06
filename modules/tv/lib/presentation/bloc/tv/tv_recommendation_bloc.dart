@@ -1,10 +1,9 @@
 import 'dart:async';
 
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tv/domain/entities/tv.dart';
 import 'package:tv/domain/usecases/tv/get_tv_recommendation.dart';
 import 'package:equatable/equatable.dart';
-import 'package:meta/meta.dart';
 
 part 'tv_recommendation_event.dart';
 part 'tv_recommendation_state.dart';

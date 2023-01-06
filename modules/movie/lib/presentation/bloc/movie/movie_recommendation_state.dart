@@ -1,6 +1,5 @@
 part of 'movie_recommendation_bloc.dart';
 
-@immutable
 abstract class MovieRecommendationState extends Equatable {}
 
 class MovieRecommendationLoading extends MovieRecommendationState {

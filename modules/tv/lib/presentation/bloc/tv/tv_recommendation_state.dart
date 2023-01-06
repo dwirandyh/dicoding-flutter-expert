@@ -1,6 +1,5 @@
 part of 'tv_recommendation_bloc.dart';
 
-@immutable
 abstract class TvRecommendationState extends Equatable {}
 
 class TvRecommendationLoading extends TvRecommendationState {
