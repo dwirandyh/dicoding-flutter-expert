@@ -17,7 +17,10 @@ workflows:
         ignore_failure: true
       - name: Flutter unit tests
         script: |
-          flutter test
+          cd ./modules/core && flutter test && \
+          cd ../movie && flutter test && \
+          cd ../tv && flutter test && \
+          cd ../watchlist && flutter test
     artifacts:
       - /tmp/xcodebuild_logs/*.log
       - flutter_drive.log

@@ -33,7 +33,7 @@ void main() {
     mockWatchlistStatus = MockWatchlistStatus();
   });
 
-  Widget _makeTestableWidget(Widget body) {
+  Widget makeTestableWidget(Widget body) {
     return MultiBlocProvider(
       providers: [
         BlocProvider<TvDetailBloc>.value(value: mockTvDetailBloc),
@@ -130,7 +130,7 @@ void main() {
 
     final watchlistButtonIcon = find.byIcon(Icons.add);
 
-    await tester.pumpWidget(_makeTestableWidget(const TvDetailPage(id: 1)));
+    await tester.pumpWidget(makeTestableWidget(const TvDetailPage(id: 1)));
     await tester.pump(Duration.zero);
 
     expect(watchlistButtonIcon, findsOneWidget);
@@ -166,7 +166,7 @@ void main() {
 
     final watchlistButtonIcon = find.byIcon(Icons.check);
 
-    await tester.pumpWidget(_makeTestableWidget(const TvDetailPage(id: 1)));
+    await tester.pumpWidget(makeTestableWidget(const TvDetailPage(id: 1)));
     await tester.pump(Duration.zero);
 
     expect(watchlistButtonIcon, findsOneWidget);
@@ -181,7 +181,7 @@ void main() {
     );
 
     final loadingIndicatorFinder = find.byType(CircularProgressIndicator);
-    await tester.pumpWidget(_makeTestableWidget(const TvDetailPage(id: 1)));
+    await tester.pumpWidget(makeTestableWidget(const TvDetailPage(id: 1)));
     await tester.pump(Duration.zero);
 
     expect(loadingIndicatorFinder, findsOneWidget);
@@ -198,7 +198,7 @@ void main() {
     );
 
     final errorMessageFinder = find.text('Failed to load data');
-    await tester.pumpWidget(_makeTestableWidget(const TvDetailPage(id: 1)));
+    await tester.pumpWidget(makeTestableWidget(const TvDetailPage(id: 1)));
     await tester.pump(Duration.zero);
 
     expect(errorMessageFinder, findsOneWidget);
@@ -232,7 +232,7 @@ void main() {
 
     final recommendationListFinder =
         find.byKey(const Key('tv-detail-recommendation-listview'));
-    await tester.pumpWidget(_makeTestableWidget(const TvDetailPage(id: 1)));
+    await tester.pumpWidget(makeTestableWidget(const TvDetailPage(id: 1)));
     await tester.pump(Duration.zero);
 
     expect(recommendationListFinder, findsOneWidget);

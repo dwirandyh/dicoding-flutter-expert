@@ -7,11 +7,13 @@ import 'package:core/widgets/item_card.dart';
 import 'package:core/common/feature_page_route.dart';
 
 class WatchlistMoviesPage extends StatefulWidget {
+  const WatchlistMoviesPage({super.key});
+
   @override
-  _WatchlistMoviesPageState createState() => _WatchlistMoviesPageState();
+  WatchlistMoviesPageState createState() => WatchlistMoviesPageState();
 }
 
-class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
+class WatchlistMoviesPageState extends State<WatchlistMoviesPage>
     with RouteAware {
   @override
   void initState() {
